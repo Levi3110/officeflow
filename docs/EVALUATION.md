@@ -11,6 +11,16 @@ this repository. Simulation validates orchestration and correctness; it cannot v
 | Complexity 20% | Browsing, link activation, scroll, cross-app workflow, cell/formula editing, report, missing-data handoff | Review successful live task completion and action diversity; inspect errors and artifacts |
 | Efficiency 20% | Runner/app CPU and RSS, action timing, model calls/tokens, completion status | Repeat identical scenarios and report medians/p95 plus outcome rates |
 
+## Current exploratory evidence
+
+The [human-05 case study](HUMAN_05_BENCHMARK.md) compares one agent trace with one person's session.
+Human behaviour varies both between people and within the same person: typing, deliberate editing,
+shortcuts, navigation and task-solving strategy all differ. This is an individual reference, not
+an estimate of a universal human distribution. The measured key-hold distributions differ substantially;
+no close-match claim, population inference or calibrated weighted score follows. Raw human traces
+remain local and published results retain unfavourable findings. Passive foreground samples in
+this collection may be stale and are excluded from dwell/completion conclusions.
+
 ## Reproducible comparison
 
 For executable manual-collection steps, see [HUMAN_BASELINE.md](HUMAN_BASELINE.md).

@@ -111,7 +111,8 @@ pauses. Reading pauses depend on observed text length; app switches have their o
 Typos are restricted to prose and corrected before the next intended character. Mouse movement
 uses a smooth curved path and distance-dependent duration when link coordinates are available.
 Scrolling divides wheel input into varying bursts with read pauses; learned viewport-dependent scroll
-models are future work. No claim of human equivalence is made before empirical comparison.
+models are future work. The single-person comparison in [HUMAN_05_BENCHMARK.md](HUMAN_05_BENCHMARK.md)
+does not establish human equivalence; people differ in timing and task strategy.
 
 Timing categories separate requested/elapsed behaviour, application wait/verification, and
 runtime overhead. Unicode key-down/up events have a sampled hold interval; cancellation releases
@@ -131,8 +132,8 @@ sub-sample spikes may be missed.
 A separate [passive CGEventTap](https://developer.apple.com/documentation/coregraphics/cgeventtapoptions/listenonly)
 records native input timestamps and metadata when Input Monitoring is available. It neither
 consumes executor commands nor records characters/raw key codes. Missing permission, queue
-overflow and tap disablement are explicit coverage records. The listener is implemented but
-not live-validated on this machine. Process reads use
+overflow and tap disablement are explicit coverage records. The listener has run on real agent
+and manual sessions; see [VALIDATION.md](VALIDATION.md). Process reads use
 [psutil oneshot](https://psutil.readthedocs.io/stable/index.html) to avoid redundant system calls;
 dead process cache entries are pruned. Metrics stream over records rather than loading the
 entire audit/telemetry into memory. Audit JSON export preserves prevalidated JSON bodies to

@@ -28,3 +28,8 @@ development failures. Native evidence and simulation evidence are kept explicitl
 `recorded-demo/` contains the later run's permission checks, output files, metrics, activity
 assessment and verified video metadata. The full 1080p MP4 is a local artifact under `dist/`,
 with its original MOV and QA frames under `runs/`; video/screenshot pixels are excluded from Git.
+
+`human-05-benchmark/` contains aggregate results, CSV and provenance for the single-person
+manual comparison. Read the [case study](../docs/HUMAN_05_BENCHMARK.md) for timing differences,
+individual variability, resource/focus limitations and the unassigned weighted score. Raw human
+input and OS traces are archived locally and excluded from Git.

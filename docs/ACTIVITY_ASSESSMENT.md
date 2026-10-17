@@ -34,5 +34,9 @@ changed artifacts prevent credit for correct output and corrected final text.
 
 Input recording covers the login session. Source/target PIDs are retained, and the sample's
 provenance lists runner and unattributed events. All recorded keys/clicks/scrolls in the successful
-run came from the runner; three pointer moves had source PID 0. No human baseline was collected.
+run came from the runner; three pointer moves had source PID 0. A later single-person reference
+is documented in [the human-05 report](HUMAN_05_BENCHMARK.md); it uses the separately recorded demo trace.
 Nonconstant timing and occasional corrections demonstrate capability, not authenticity.
+
+People differ in typing and task strategy. Passing all seven checks does not establish a close match
+to that participant or generalise to a population; the exploratory comparison retains substantial timing differences.

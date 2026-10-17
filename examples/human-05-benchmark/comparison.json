@@ -1,0 +1,172 @@
+{
+  "status": "descriptive_comparison",
+  "insufficient_evidence_reasons": {},
+  "agent": {
+    "coverage": {
+      "enabled": true,
+      "completed": true,
+      "sessions_started": 1,
+      "sessions_stopped": 1,
+      "lifecycle_errors": 0,
+      "outside_session_events": 0,
+      "incomplete_lines": 0,
+      "gaps": 0,
+      "errors": 0,
+      "dropped_events": 0,
+      "invalid_timestamps": 0
+    },
+    "recording_roles": [
+      "agent"
+    ],
+    "event_counts": {
+      "key_down": 896,
+      "repeat_key_downs": 0,
+      "key_up": 896,
+      "move": 171,
+      "scroll": 10,
+      "mouse_down": 3,
+      "mouse_up": 3,
+      "corrections": 4,
+      "nonrepeat_corrections": 4
+    },
+    "statistics": {
+      "inter_key_seconds": {
+        "count": 833,
+        "mean": 0.14837345002756575,
+        "median": 0.12248658301541582,
+        "p95": 0.387291458027903,
+        "cv": 0.6460986189442287
+      },
+      "key_hold_seconds": {
+        "count": 849,
+        "mean": 0.056018571171347925,
+        "median": 0.055055166012607515,
+        "p95": 0.07560858404031023,
+        "cv": 0.198163554473961
+      },
+      "idle_seconds": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "p95": null,
+        "cv": null
+      },
+      "input_silence_seconds": {
+        "count": 4,
+        "mean": 3.5616607914998895,
+        "median": 3.623012166499393,
+        "p95": 3.929416582977865,
+        "cv": 0.09973985084437376
+      },
+      "pointer_pixels_per_second": {
+        "count": 170,
+        "mean": 538.66530203529,
+        "median": 591.5725196749385,
+        "p95": 927.6643060235352,
+        "cv": 0.5613519931614728
+      }
+    },
+    "feature_notes": {
+      "idle_seconds": "Gaps over 2 seconds between unmodified key downs; shortcuts reset the sequence. This does not measure all reading/planning or absence of input.",
+      "input_silence_seconds": "Gaps over 2 seconds between any observed input events inside a session, excluding leading/trailing unobserved periods. Silence does not identify its purpose.",
+      "corrections": "Backspace/Delete key downs, including repeats; these also include intentional editing, not solely typing errors.",
+      "pointer_pixels_per_second": "Event-to-event velocities without resampling. Different sampling rates and small time intervals can skew means/tails."
+    }
+  },
+  "human": {
+    "coverage": {
+      "enabled": true,
+      "completed": true,
+      "sessions_started": 1,
+      "sessions_stopped": 1,
+      "lifecycle_errors": 0,
+      "outside_session_events": 0,
+      "incomplete_lines": 0,
+      "gaps": 0,
+      "errors": 0,
+      "dropped_events": 0,
+      "invalid_timestamps": 0
+    },
+    "recording_roles": [
+      "human"
+    ],
+    "event_counts": {
+      "move": 10743,
+      "mouse_down": 62,
+      "mouse_up": 62,
+      "scroll": 51,
+      "key_down": 708,
+      "repeat_key_downs": 9,
+      "key_up": 698,
+      "corrections": 92,
+      "nonrepeat_corrections": 83
+    },
+    "statistics": {
+      "inter_key_seconds": {
+        "count": 663,
+        "mean": 0.2419327537689483,
+        "median": 0.1512519590323791,
+        "p95": 0.7751538339653052,
+        "cv": 1.1324099498715983
+      },
+      "key_hold_seconds": {
+        "count": 682,
+        "mean": 0.09195629350091344,
+        "median": 0.08695985400117934,
+        "p95": 0.13592679100111127,
+        "cv": 0.5274997607214145
+      },
+      "idle_seconds": {
+        "count": 10,
+        "mean": 3.3036919792124535,
+        "median": 3.119257332989946,
+        "p95": 6.963715042045806,
+        "cv": 0.4029926610935533
+      },
+      "input_silence_seconds": {
+        "count": 5,
+        "mean": 3.278857516602147,
+        "median": 3.22301850002259,
+        "p95": 4.442040916008409,
+        "cv": 0.2889725622507639
+      },
+      "pointer_pixels_per_second": {
+        "count": 10742,
+        "mean": 3577.4294854359573,
+        "median": 360.5573974624941,
+        "p95": 7106.69580917297,
+        "cv": 12.055317103679082
+      }
+    },
+    "feature_notes": {
+      "idle_seconds": "Gaps over 2 seconds between unmodified key downs; shortcuts reset the sequence. This does not measure all reading/planning or absence of input.",
+      "input_silence_seconds": "Gaps over 2 seconds between any observed input events inside a session, excluding leading/trailing unobserved periods. Silence does not identify its purpose.",
+      "corrections": "Backspace/Delete key downs, including repeats; these also include intentional editing, not solely typing errors.",
+      "pointer_pixels_per_second": "Event-to-event velocities without resampling. Different sampling rates and small time intervals can skew means/tails."
+    }
+  },
+  "distances": {
+    "inter_key_seconds": {
+      "ks": 0.27761873980361373,
+      "wasserstein": 0.09800310855974018
+    },
+    "key_hold_seconds": {
+      "ks": 0.7443119212183387,
+      "wasserstein": 0.036027753768788806
+    },
+    "idle_seconds": {
+      "ks": null,
+      "wasserstein": null
+    },
+    "input_silence_seconds": {
+      "ks": 0.4,
+      "wasserstein": 0.6342869961197721
+    },
+    "pointer_pixels_per_second": {
+      "ks": 0.38577546080804315,
+      "wasserstein": 3215.3829983249125
+    }
+  },
+  "weighted_score": null,
+  "note": "No calibrated rubric score. Smaller empirical distances mean closer distributions, not proof of human identity. Samples are temporally correlated; no independence-based p-values are reported."
+}

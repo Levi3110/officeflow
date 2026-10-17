@@ -62,13 +62,16 @@ median core wall time and median CPU time. Correctness remained 9/9 in each batc
 final held-out seeds. This is a measured local plateau under the available simulation environment,
 not proof of a global optimum or maximum competition score. Timing noise is visible in raw p95s.
 
-The 30/30/20/20 rubric has no calibrated score formula or human baseline supplied. At benchmark
-time, LibreOffice and the three macOS permissions were unavailable. LibreOffice has since been
+The 30/30/20/20 rubric has no calibrated score formula. No human baseline was supplied during
+core optimization. At benchmark time, LibreOffice and the three macOS permissions were unavailable. LibreOffice has since been
 installed and Accessibility/Input Monitoring granted. A real GUI run passed all seven requested
 activity checks with independent input telemetry; see `examples/native/README.md`. The native
-run is a functionality demonstration, not a repeated resource benchmark. Screen capture has since been granted and independently checked;
-a separately recorded human baseline remains unavailable. Further authenticity/timing calibration
-requires that baseline; the measured core plateau is not a maximum competition score.
+run is a functionality demonstration, not a repeated resource benchmark. Screen capture has
+since been granted and independently checked;
+the later [human-05 comparison](HUMAN_05_BENCHMARK.md) now supplies one individual reference.
+It shows substantial timing differences and cannot represent all people or task strategies. Further
+authenticity evaluation requires multiple participants and held-out sessions; the measured core
+plateau is not a maximum competition score.
 
 ## Reproduce
 

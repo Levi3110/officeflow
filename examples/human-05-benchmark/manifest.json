@@ -1,0 +1,49 @@
+{
+  "schema_version": 1,
+  "created_at": "2026-10-17T19:13:55+08:00",
+  "design": "One participant reference recording and one agent run; exploratory descriptive comparison.",
+  "study_notes": [
+    "The user reports completing all three phases: browsing three products, entering the Calc comparison, and writing the Writer report. Human output correctness and identical task text were not independently verified. Human-05 followed an earlier manual practice attempt; learning and task interpretation can affect the comparison.",
+    "The retained agent trace predates human-05. No behaviour parameters, timestamps or events were changed to improve this result. Human-04 is not pooled into this analysis or counted as another participant.",
+    "The agent has shorter active inter-key median/p95 (122.487/387.291 ms versus 151.252/775.154 ms) and shorter key-hold median/p95 (55.055/75.609 ms versus 86.960/135.927 ms). Key-hold variability is also lower (CV 0.198 versus 0.527). The key-hold KS distance is 0.744: the measured distributions differ substantially. These findings do not support claiming a close match to this participant.",
+    "There are only four agent and five human input-silence gaps above two seconds. A KS distance of 0.400 from these small samples is not strong pause-similarity evidence. Different editing, shortcut and navigation strategies also limit the interpretation of event-count differences.",
+    "All 581 human foreground samples report Code. This is treated as a potentially stale passive-sampler result, excluded from dwell and completion conclusions; it does not establish that the human used only Code. The recorded agent run included display recording and screenshots, so background/capture costs were not controlled.",
+    "The retained agent artifacts were rechecked with sha assess: all seven activity checks passed, including source/file consistency. This functional checklist is separate from human similarity and is not a calibrated competition grade."
+  ],
+  "inputs": {
+    "agent": {
+      "recording_label": "recorded-native-demo-final",
+      "recording_duration_seconds": 159.62448287010193,
+      "files": {
+        "inputs.jsonl": {
+          "sha256": "fe50c9f16f8f4cd5cbd36e18e328a071d43c75a3c32c4d7d013edfa47a73023b",
+          "bytes": 464722
+        },
+        "telemetry.jsonl": {
+          "sha256": "31a5140d214403cb004c90528725bed44f5e82090567b605b941e79c2102598c",
+          "bytes": 2815810
+        }
+      }
+    },
+    "human": {
+      "recording_label": "human-05",
+      "recording_duration_seconds": 304.70351099967957,
+      "files": {
+        "inputs.jsonl": {
+          "sha256": "488fff01e25ad4b9c4c5599e05b3eea15943b23ff62bdd7a3350abd2ea1b04b9",
+          "bytes": 2135534
+        },
+        "telemetry.jsonl": {
+          "sha256": "c7f711b538fe888639032f13c2272db3e86bd01b55c89462b9a7452afc845d77",
+          "bytes": 6057394
+        }
+      }
+    }
+  },
+  "analysis_code_sha256": {
+    "reporting.py": "191300dc50820d93af6ee71b2465be80c918a2a3d4b2b8b293e5d0dfd9646b4e",
+    "evaluation.py": "37b4cc49d296ea05d4fcaf6ed550bd26d431e033fe6f743fec0005a810ce5895"
+  },
+  "raw_archived": true,
+  "weighted_score": null
+}

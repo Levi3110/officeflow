@@ -1,0 +1,99 @@
+{
+  "agent": {
+    "sample_count": 304,
+    "sample_window_seconds": 159.51470303535461,
+    "statistics": {
+      "runner_cpu_percent": {
+        "count": 303,
+        "mean": 5.841254125412542,
+        "median": 5.7,
+        "p95": 7.3,
+        "cv": 0.2820378244765883,
+        "peak": 22.8
+      },
+      "runner_rss_mib": {
+        "count": 304,
+        "mean": 86.40696957236842,
+        "median": 72.140625,
+        "p95": 114.640625,
+        "cv": 0.25637396798578244,
+        "peak": 135.734375
+      },
+      "apps_cpu_percent": {
+        "count": 303,
+        "mean": 25.79075907590759,
+        "median": 22.400000000000002,
+        "p95": 51.6,
+        "cv": 0.6592474427346889,
+        "peak": 147.2
+      },
+      "apps_rss_mib": {
+        "count": 304,
+        "mean": 4779.598170230263,
+        "median": 4777.5078125,
+        "p95": 5120.71875,
+        "cv": 0.04817507097827955,
+        "peak": 5234.78125
+      }
+    },
+    "foreground_samples_diagnostic_only": {
+      "LibreOffice": 211,
+      "Google Chrome": 93
+    },
+    "limitations": [
+      "Runner means agent workflow plus observer on the agent side, but observer only on the human side.",
+      "App totals include unrelated Chrome/LibreOffice sessions and may double-count shared memory.",
+      "Initial per-process CPU samples are excluded; short spikes between samples remain unobserved.",
+      "Passive-only AppKit foreground sampling may be stale; foreground samples are not validated dwell time.",
+      "These are different capture windows, not an isolated efficiency experiment or a cost of human cognition."
+    ]
+  },
+  "human": {
+    "sample_count": 581,
+    "sample_window_seconds": 304.3769488334656,
+    "statistics": {
+      "runner_cpu_percent": {
+        "count": 580,
+        "mean": 4.594827586206897,
+        "median": 4.4,
+        "p95": 6.1,
+        "cv": 0.1669945394371447,
+        "peak": 7.4
+      },
+      "runner_rss_mib": {
+        "count": 581,
+        "mean": 46.769901032702236,
+        "median": 45.140625,
+        "p95": 52.15625,
+        "cv": 0.13599287192494408,
+        "peak": 79.8125
+      },
+      "apps_cpu_percent": {
+        "count": 580,
+        "mean": 20.80568965517241,
+        "median": 16.4,
+        "p95": 46.7,
+        "cv": 0.8145805252183305,
+        "peak": 131.6
+      },
+      "apps_rss_mib": {
+        "count": 581,
+        "mean": 5809.742711919105,
+        "median": 5829.84375,
+        "p95": 6158.203125,
+        "cv": 0.04487447248098399,
+        "peak": 6315.3125
+      }
+    },
+    "foreground_samples_diagnostic_only": {
+      "Code": 581
+    },
+    "limitations": [
+      "Runner means agent workflow plus observer on the agent side, but observer only on the human side.",
+      "App totals include unrelated Chrome/LibreOffice sessions and may double-count shared memory.",
+      "Initial per-process CPU samples are excluded; short spikes between samples remain unobserved.",
+      "Passive-only AppKit foreground sampling may be stale; foreground samples are not validated dwell time.",
+      "These are different capture windows, not an isolated efficiency experiment or a cost of human cognition."
+    ]
+  }
+}

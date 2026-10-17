@@ -1,78 +1,107 @@
-# Thu baseline người thật
+# Collect a human baseline
 
-Baseline là telemetry khi **bạn tự làm cùng nhiệm vụ** với agent. Không cần quay video để
-so sánh thời gian input. Recorder chỉ nghe metadata; không phát chuột/bàn phím, không lưu
-ký tự hoặc mã phím thô. Nó ghi hoạt động toàn phiên đăng nhập, nên tránh làm việc khác khi thu.
-Không chạy agent trong lúc thu người thật; desktop lock cũng chặn hai công cụ chạy đồng thời.
+A baseline records **you manually performing the same task** as the agent. Video is optional
+for input-timing comparison. The recorder listens to metadata, emits no mouse/keyboard input,
+and stores no typed characters or raw key codes. Its scope is the login session: avoid other
+work while recording. The desktop lock prevents simultaneous agent and human collection.
 
-## 1. Mở website demo — terminal thứ nhất
+Human behaviour varies across people and across tasks, sessions, experience levels and devices.
+One person's recording is a useful individual reference, not a universal human standard. See
+the [human-05 benchmark and limitations](HUMAN_05_BENCHMARK.md).
 
-Tại thư mục dự án:
+## 1. Serve the demo website in the first terminal
+
+From the project directory:
 
 ```bash
 uv run python scripts/serve_catalog.py
 ```
 
-Giữ terminal này mở. Catalog ở `http://127.0.0.1:8765`, dùng đúng ba sản phẩm hư cấu của demo.
-Nếu cổng bận, chọn `--port 8766` và dùng URL được in ra.
+Keep that terminal open. The catalog is at `http://127.0.0.1:8765` and contains the same three
+fictional products. If the port is busy, use `--port 8766` and the printed URL.
 
-## 2. Chuẩn bị
+## 2. Prepare the task
 
-Dùng cùng máy, Chrome, LibreOffice, bố cục cửa sổ và mức zoom như lượt agent được so sánh.
-Chuẩn bị Calc và Writer với file rỗng. Đọc trước yêu cầu nhiệm vụ, rồi bắt đầu thu:
+Use the same machine, Chrome/LibreOffice versions, layout and zoom as the agent run. Prepare
+and save separate empty Calc/Writer files before collection. Read the task instructions first:
 
-- Duyệt catalog, cuộn và click Details để lấy giá/bảo hành của ba sản phẩm.
-- Nhập bảng 5 cột: Product, Price USD, Warranty months, Price with 8% tax, Source.
-- Hàng 2–4 là ba sản phẩm theo thứ tự catalog. D2 dùng `=B2*1.08`, tương tự D3/D4.
-- Viết báo cáo gồm giá, giá sau thuế, bảo hành, URL nguồn và đề xuất sản phẩm rẻ nhất.
-- Lưu cả bảng tính và báo cáo. Để so sánh chặt hơn, dùng cùng độ dài/nội dung báo cáo như demo.
+- Browse the catalog, scroll and click Details to obtain all three prices and warranties.
+- Enter five columns: Product, Price USD, Warranty months, Price with 8% tax and Source.
+- Use rows 2–4 in catalog order. D2 is `=B2*1.08`; use corresponding formulas in D3/D4.
+- Write a report containing prices, tax-inclusive prices, warranties, source URLs and the lowest-price recommendation.
+- Save both files. For a stricter workload comparison, match the demo report's content and length.
 
-Làm tự nhiên. Gõ nội dung tương ứng với tác vụ agent thay vì dán cả đoạn. Không cố tình gây lỗi,
-chèn delay hoặc bắt chước tốc độ agent. Lỗi nào xảy ra thì sửa như bình thường.
+Work naturally. Type the corresponding content rather than pasting entire documents. Do not
+manufacture mistakes, delays or an imitation of the agent's pace. Correct real mistakes as usual.
 
-## 3. Thu — terminal thứ hai
+## 3. Record in the second terminal
 
 ```bash
 uv run --extra desktop sha capture-human --seconds 600 --output runs/human-01
 ```
 
-Khi hiện `Recording metadata only...`, tự thực hiện nhiệm vụ. Có tối đa 10 phút; không cần
-làm đủ 10 phút. Làm xong thì trở lại **terminal thứ hai** và Ctrl+C để kết thúc; dữ liệu đã thu
-được giữ lại. Đừng dừng nhầm terminal đang phục vụ website. Lệnh có thể kết thúc với mã 130
-sau Ctrl+C; đó không phải mất dữ liệu.
+Start manual work when `Recording metadata only...` appears. The limit is ten minutes; you do
+not need to use all ten. When finished, return to the **second terminal** and press Ctrl+C.
+Recorded data is retained. Keep the website's terminal running until the task is finished.
+An exit code of 130 after Ctrl+C is an intentional interruption, not evidence of data loss.
 
-Đầu ra: `runs/human-01/inputs.jsonl` và `telemetry.jsonl`. Mỗi lượt cần thư mục mới (`human-02`, ...).
-Công cụ thu không tự kiểm tra nội dung file bạn làm; hãy kiểm tra đúng dữ liệu/công thức/báo cáo
-trước khi sử dụng lượt đó làm baseline. Lượt lỗi vẫn cần ghi nhận, không chỉ giữ các lượt đẹp.
-Dừng recorder ngay sau khi hoàn tất, **trước** khi gõ lệnh compare hoặc đọc kết quả. Mốc stop
-đóng file là điều kiện kỹ thuật; nó không tự chứng minh cả file chỉ chứa đúng nhiệm vụ.
+Output is `runs/human-01/inputs.jsonl` and `telemetry.jsonl`. Use a fresh directory for each
+session (`human-02`, etc.). The collector does not verify manual documents: check their data,
+formulas and report before using a session. Record failed tasks as well as successful ones.
+Stop collection immediately after completion, **before** typing compare commands or reading
+results. A valid stop marker establishes technical closure, not a task-only recording boundary.
 
-## 4. So sánh với lượt agent đã quay
+## 4. Compare with the recorded agent
 
-Trên máy bàn giao, dữ liệu agent đã có ở đường dẫn dưới đây. Nếu clone mới, hãy chạy một lượt
-native trước và thay đường dẫn agent bằng `inputs.jsonl` của lượt đó; `runs/` không nằm trên Git.
+The handoff machine already has the following agent trace. A fresh clone does not include
+`runs/`; execute a native agent run first and substitute its input path.
 
 ```bash
 uv run sha compare --agent runs/recorded-native-demo-final/inputs.jsonl --human runs/human-01/inputs.jsonl --output runs/baseline-comparison-01.json
 ```
 
-Công cụ so sánh median/p95 và KS/Wasserstein của khoảng gõ, giữ phím, idle và tốc độ chuột.
-Khoảng cách nhỏ hơn nghĩa là các phân bố gần hơn; không có ngưỡng tự động kết luận “giống người”.
-Ít nhất 30 khoảng gõ hợp lệ ở mỗi bên và coverage không có gap/drop/error là điều kiện tối thiểu
-của công cụ, không phải bảo đảm chất lượng thống kê. Hai phiên phải có đủ start/stop và
-`coverage.completed = true`; phiên đang ghi, JSON dở dang hoặc lifecycle sai sẽ bị chặn, với
-lý do trong `insufficient_evidence_reasons`. `insufficient_evidence` nghĩa là chưa đủ
-bằng chứng. Trường `weighted_score` để null; công cụ không tự chấm rubric 30/30/20/20.
+The tool reports median/p95 and descriptive KS/Wasserstein distances for inter-key intervals,
+key holds, gaps and pointer speeds. Smaller distances mean closer sampled distributions;
+there is no automatic threshold for declaring human likeness. At least 30 valid active intervals
+per side and error-free coverage are minimum tool checks, not a sufficient statistical sample.
+Both recordings need valid start/stop lifecycles and `coverage.completed = true`. Live/partial
+JSON traces and lifecycle errors produce `insufficient_evidence` with explicit reasons. The
+weighted score remains null: the tool does not invent a 30/30/20/20 competition grade.
 
-Bắt đầu với một lượt để kiểm tra quy trình. Muốn đánh giá đáng tin hơn, thu nhiều lượt/người
-(ví dụ 3–5 để khởi đầu), nhiều người và nhiều lượt agent trong cùng điều kiện. Tách các lượt dùng
-để chỉnh persona khỏi các lượt kiểm tra cuối. Đây là gợi ý thu ban đầu, không phải cỡ mẫu đã được
-chứng minh đủ. Telemetry CPU/RAM được lưu nhưng lệnh compare hiện chỉ so sánh các đặc trưng input;
-đánh giá tài nguyên và độ đúng đầu ra cần làm riêng. Mẫu này chỉ đại diện cho công việc đã thu.
+Begin with one session to check the collection process. For stronger evaluation, collect
+multiple sessions per person, multiple participants and repeated agent runs under matched
+conditions. For example, 3–5 sessions per person can be an initial collection plan, not a proven
+adequate sample size. Keep tuning data separate from held-out evaluation sessions. CPU/RAM
+telemetry is saved, but `compare` itself compares input features; resources and output accuracy
+need separate checks. Repeated sessions from one person remain one participant; record workload and participant identity separately.
 
-`idle_seconds` là chỉ số cũ của khoảng giữa các phím, bị reset bởi shortcut. Nó bằng 0 không
-có nghĩa là không nghỉ. Dùng thêm `input_silence_seconds` cho khoảng trống trên 2 giây giữa
-bất kỳ input nào; chỉ số này không biết bạn đang đọc, suy nghĩ hay làm việc ngoài nhiệm vụ.
-`corrections` đếm Backspace/Delete kể cả autorepeat; `nonrepeat_corrections` loại autorepeat,
-nhưng vẫn gồm sửa nội dung có chủ đích. Không dùng các số này như số lỗi gõ. Vận tốc chuột
-hiện tính theo từng event, chưa resample; chênh lệch tần suất lấy mẫu có thể làm lệch mean/p95.
+## Save an immutable comparison report
+
+```bash
+uv run python scripts/benchmark_report.py \
+  --agent runs/recorded-native-demo-final \
+  --human runs/human-01 \
+  --output runs/benchmarks/human-01 \
+  --archive-raw
+```
+
+This writes an English report, CSV, comparison/resource JSON and a SHA256 provenance manifest.
+With `--archive-raw`, exact input/OS snapshots are copied into this **local** ignored folder.
+Sources are not changed and an existing report directory is rejected. Omit the flag for an
+aggregate-only report. Add `--study-note 'English protocol note'` for explicit collection context.
+Publish selected aggregates only; raw human session metadata stays local.
+
+## Interpret the measurements conservatively
+
+`idle_seconds` is the legacy gap-between-keys measure, reset by shortcuts. Zero does not mean
+no pauses occurred. `input_silence_seconds` measures gaps above two seconds between any input
+events, without identifying reading, thought or off-task activity. `corrections` counts Backspace/
+Delete, including repeats; `nonrepeat_corrections` removes repeats but still includes deliberate
+editing. Neither is a verified typo count. Pointer velocity is event-wise without resampling;
+different event cadences can distort means and tails.
+
+The passive foreground sampler can report stale application state. Do not infer application
+dwell or lack of task completion from it without independent validation. Closed capture files
+and high event counts do not establish identical text, task difficulty, skill or cognitive effort.
+The human-05 report retains these limitations and does not portray timing differences as a
+universal failure of the person or proof of agent superiority.
