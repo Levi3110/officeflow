@@ -13,6 +13,8 @@ this repository. Simulation validates orchestration and correctness; it cannot v
 
 ## Reproducible comparison
 
+For executable manual-collection steps, see [HUMAN_BASELINE.md](HUMAN_BASELINE.md).
+
 1. Use the same machine, app versions, catalog, window layout and initial documents for all runs.
 2. Record at least several human runs and several agent runs; document sample counts. Reserve
    separate runs for tuning and evaluation. Avoid recording agent activity while a human uses

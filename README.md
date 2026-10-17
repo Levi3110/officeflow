@@ -187,6 +187,9 @@ thống kê của **khoảng thời gian được yêu cầu**, không phải ch
 
 ## Benchmark và baseline người dùng
 
+Xem [hướng dẫn thu baseline từng bước](docs/HUMAN_BASELINE.md), gồm cách mở catalog riêng
+để bạn thao tác thủ công trong lúc recorder chỉ nghe telemetry.
+
 ```bash
 uv run sha benchmark --runs 9 --output runs/bench/current.json
 uv run --extra desktop sha capture-human --seconds 180 --output runs/human-baseline
