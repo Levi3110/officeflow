@@ -24,3 +24,7 @@ changes and the local stopping condition. Benchmark data describes simulation co
 files, complete audit/input/OS records, source evidence, the 7/7 activity assessment and a
 provenance summary. Read its [validation record](native/README.md) for exact limits and earlier
 development failures. Native evidence and simulation evidence are kept explicitly labelled.
+
+`recorded-demo/` contains the later run's permission checks, output files, metrics, activity
+assessment and verified video metadata. The full 1080p MP4 is a local artifact under `dist/`,
+with its original MOV and QA frames under `runs/`; video/screenshot pixels are excluded from Git.

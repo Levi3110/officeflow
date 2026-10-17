@@ -66,8 +66,8 @@ The 30/30/20/20 rubric has no calibrated score formula or human baseline supplie
 time, LibreOffice and the three macOS permissions were unavailable. LibreOffice has since been
 installed and Accessibility/Input Monitoring granted. A real GUI run passed all seven requested
 activity checks with independent input telemetry; see `examples/native/README.md`. The native
-run is a functionality demonstration, not a repeated resource benchmark. Screen capture and
-a separately recorded human baseline remain unavailable. Further authenticity/timing calibration
+run is a functionality demonstration, not a repeated resource benchmark. Screen capture has since been granted and independently checked;
+a separately recorded human baseline remains unavailable. Further authenticity/timing calibration
 requires that baseline; the measured core plateau is not a maximum competition score.
 
 ## Reproduce

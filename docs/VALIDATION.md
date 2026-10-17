@@ -8,8 +8,8 @@ Python 3.14.6. Dependency versions are recorded in `uv.lock`.
 ```text
 uv sync --locked --extra dev --extra desktop
 pytest -q                         53 passed
-ruff check src tests              All checks passed
-ruff format --check src tests     38 files already formatted
+ruff check src tests scripts      All checks passed
+ruff format --check src tests scripts  39 files already formatted
 sha run --output runs/final-optimized-demo
 sha inspect runs/final-optimized-demo
 sha run --output runs/final-optimized-demo --resume
@@ -47,7 +47,7 @@ Benchmark success is not evidence of live GUI or human authenticity. The origina
 completed the same task with 38 logical actions; row batching reduces action/save overhead while
 retaining all 20 cell edits and every final verification criterion.
 
-## Native desktop result (executed)
+## First native desktop result (before Screen Recording grant)
 
 ```text
 Google Chrome:     installed
@@ -82,6 +82,19 @@ Supervisor recovery, and send private-source Quartz keys with explicit flags and
 physical/text data. Unit tests verify release of keys/modifiers on cancellation/error.
 The final successful run does not erase earlier failed attempts or establish a success rate.
 
+## Screen Recording follow-up (executed)
+
+After the user's permission change, all three checks passed. Native screenshots were captured,
+and `runs/recorded-native-demo-final` completed with **22 verified actions and 7/7 activity checks**
+while recording the display. The finalized native MOV and exported MP4 both have duration
+189.998 seconds at 1920×1080. Four actual video frames were reviewed across browser, Calc,
+Writer typing and the completed report. Export preserved full duration and requested no audio.
+
+The local MP4 is `dist/synthetic-human-agent-demo.mp4`; metadata/digests and the recorded run's
+measurements are in `examples/recorded-demo/`. An earlier capture was discarded when stopped
+with SIGINT, although its workflow passed. The retained helper now waits for normal timed
+recorder completion. The original no-video run above remains labelled with its original grants.
+
 ## LibreOffice engine compatibility (executed after installation)
 
 LibreOffice reports `26.8.1.1 bf6ef2662401c7d6dce671ab4deb26ee0af3a7c1`.
@@ -104,7 +117,7 @@ and unavailable in the latest preflight.
 
 - No real-human baseline comparison or authenticity score.
 - No real-model inference session; the Ollama-compatible gateway was tested against a local stub.
-- No live desktop video recording. Repository/CI publication status is recorded in the submission notes.
+- Repository publication, recording artifacts and CI execution are recorded in the submission notes.
 - No Microsoft Office, Pages/Numbers, Windows/Linux native GUI adapter or arbitrary website parser.
 - No automatic OCR target grounding, full kernel/network event tracing, advanced document formatting
   or GUI DOCX/XLSX export. Optional OCR reads an existing screenshot via a separate helper command.

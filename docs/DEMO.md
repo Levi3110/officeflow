@@ -18,10 +18,39 @@
    against a separately recorded manual baseline. Missing baseline leaves the score unassigned.
 8. Show the relevant tests with `uv run pytest -q`. State supported apps and current limitations.
 
-Do not present a simulation recording as live GUI evidence. This repository includes a runnable
-simulation and recording instructions. A desktop video has **not** been produced: the latest
-preflight has Accessibility/Input Monitoring but Screen Recording remains unavailable. Use
-Cmd+Shift+5 to record a new full run after enabling screen capture for the launcher.
+Do not present a simulation recording as live GUI evidence. Accessibility, Input Monitoring
+and Screen Recording are now granted on the development machine, and a real screenshot was
+captured successfully after the latest permission change.
+
+## Delivered local video
+
+The complete verified demo is `dist/synthetic-human-agent-demo.mp4` (189.998 seconds, 1080p).
+The original MOV is `runs/recorded-native-demo-final/demo.mov`. Four sampled frames were visually
+checked; the full recorded workflow and output files passed. Metadata, digests and selected
+verification results are in [`examples/recorded-demo/`](../examples/recorded-demo/README.md).
+
+## Automated local recording
+
+Put Chrome and LibreOffice on the selected display before starting. The script records the
+actual desktop and invokes the existing runtime; it does not synthesize demonstration frames.
+
+```bash
+uv run --extra desktop python scripts/record_demo.py --output runs/recorded-demo --seconds 190
+swift scripts/video_artifact.swift runs/recorded-demo/demo.mov dist/my-demo.mp4 runs/recorded-demo/video-qa
+```
+
+The first command records display 1 by default; `--display 2` selects display 2. Leave input
+idle for the entire requested duration. Use a new run directory and an unused MP4 filename.
+The duration must exceed workflow time, including startup. The recording includes a final
+static hold if the task finishes early. It stops normally using `screencapture -V`; on this
+macOS version, stopping early with SIGINT discarded the movie, so the helper waits for normal
+completion. Ctrl+C cancels the task and recording rather than producing a usable full video.
+
+The Swift helper uses the native AVFoundation exporter, preserves the full duration, writes
+MP4 and samples four frames for visual review. It also writes duration/resolution/size metadata.
+It requires the macOS command-line developer tools. No microphone/audio capture is requested.
+Raw movies, screenshots and frames stay in ignored `runs/`/`dist/` folders; they are not pushed
+with source code. Select and submit the reviewed video separately.
 
 ## GitHub handoff
 
@@ -38,12 +67,11 @@ uv run pytest -q
 ```
 
 [CI run 39020181384](https://github.com/Levi3110/synthetic-human-agent/actions/runs/39020181384)
-passed both Ubuntu/Python **3.11 and 3.14** jobs: 53 tests, lint and format checks. The final
-follow-up changes only document this result and do not alter tested source code.
+passed both Ubuntu/Python **3.11 and 3.14** jobs: 53 tests, lint and format checks. The recording/export helpers were additionally executed and verified on macOS.
 
 Place the repository URL and your separately recorded video URL in the submission. Evaluators
-need access to the private repository or a visibility change made by its owner. No video was
-recorded during this task because Screen Recording remained unavailable.
+need access to the private repository or a visibility change made by its owner. The original native example predates the Screen Recording grant; the new recording workflow
+and its local artifacts are documented above.
 
 ## Suggested narration
 

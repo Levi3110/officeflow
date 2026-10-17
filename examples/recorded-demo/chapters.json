@@ -1,0 +1,40 @@
+{
+  "approximate": true,
+  "actions": [
+    {
+      "action": "navigate",
+      "approx_start_seconds": 1.65,
+      "approx_end_seconds": 6.63
+    },
+    {
+      "action": "navigate",
+      "approx_start_seconds": 11.6,
+      "approx_end_seconds": 15.85
+    },
+    {
+      "action": "navigate",
+      "approx_start_seconds": 25.09,
+      "approx_end_seconds": 29.15
+    },
+    {
+      "action": "navigate",
+      "approx_start_seconds": 37.62,
+      "approx_end_seconds": 42.11
+    },
+    {
+      "action": "open_file",
+      "approx_start_seconds": 50.95,
+      "approx_end_seconds": 51.69
+    },
+    {
+      "action": "open_file",
+      "approx_start_seconds": 84.06,
+      "approx_end_seconds": 84.76
+    },
+    {
+      "action": "write_document",
+      "approx_start_seconds": 84.77,
+      "approx_end_seconds": 160.3
+    }
+  ]
+}

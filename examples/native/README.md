@@ -2,7 +2,7 @@
 
 Executed on 2026-10-17 on macOS 26.4 ARM64, Python 3.14.6, Google Chrome and LibreOffice
 26.8.1.1. The launcher was Visual Studio Code. Accessibility/Input Monitoring were granted;
-Screen Recording was unavailable. This folder contains actual GUI-produced ODS/ODT files,
+Screen Recording was unavailable during this original run. This folder contains actual GUI-produced ODS/ODT files,
 independent OS/input measurements and the recorded assessment. No native content was written
 through an Office API, document generator, clipboard paste or headless conversion. Code created
 only empty seed documents; all task content was typed through the desktop executor.
@@ -49,7 +49,8 @@ uv run sha assess runs/my-native-demo
 The demo catalog uses fictional products served on localhost. Its source links are reachable
 only while the run's fixture server is active. It does not demonstrate arbitrary site/search
 support. No Microsoft Office, advanced formatting, GUI XLSX/DOCX export, native non-English
-input or real LLM planning was validated. No video was captured; follow `docs/DEMO.md`.
+input or real LLM planning was validated. This original run has no video; a subsequent
+Screen Recording grant enabled the recording workflow in `docs/DEMO.md`.
 
 ## Development failures and fixes
 

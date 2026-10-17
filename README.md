@@ -12,8 +12,11 @@ LibreOffice Calc/Writer 26.8.1**, với 22 hành động xác minh, 5 handoff, 2
 nguồn. Checklist hoạt động đạt **7/7**; có telemetry input độc lập, 4 lỗi gõ được sửa và
 4 lần cuộn xác minh bằng AX. **53 test đạt**. Xem [bằng chứng native](examples/native/README.md).
 Đây là MVP theo kịch bản catalog cục bộ, chưa hỗ trợ mọi yêu cầu văn phòng bằng ngôn ngữ
-tự nhiên. Chưa có baseline người thật để chấm authenticity; Screen Recording chưa khả dụng,
-nên chưa quay video. Không coi 7/7 checklist là điểm thi hoặc chứng minh tối ưu toàn cục.
+tự nhiên. Chưa có baseline người thật để chấm authenticity. Screen Recording đã được cấp và kiểm tra
+bằng ảnh thật. Đã quay video GUI thật **3 phút 10 giây, 1080p**; bản MP4 nằm tại
+`dist/synthetic-human-agent-demo.mp4` trên máy bàn giao. Xem [bản ghi](examples/recorded-demo/README.md)
+và `docs/DEMO.md` để quay lại. Không coi 7/7 checklist là điểm thi hoặc
+chứng minh tối ưu toàn cục.
 
 ## Chạy ngay bằng backend kiểm thử
 
@@ -208,8 +211,8 @@ journal và fencing vẫn ghi bền vững trước input. Không tắt durabili
 
 ```bash
 uv run pytest -q
-uv run ruff check src tests
-uv run ruff format --check src tests
+uv run ruff check src tests scripts
+uv run ruff format --check src tests scripts
 ```
 
 Source nằm trong `src/synthetic_human`; test tập trung vào fencing/handoff, input exclusivity,

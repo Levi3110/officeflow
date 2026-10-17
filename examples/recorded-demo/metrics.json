@@ -1,0 +1,121 @@
+{
+  "actions_by_status": {
+    "done": 22
+  },
+  "handoffs": 5,
+  "verified_action_types": {
+    "navigate": 4,
+    "scroll": 4,
+    "read_page": 4,
+    "follow_link": 3,
+    "open_file": 2,
+    "set_cells": 4,
+    "write_document": 1
+  },
+  "semantic_units_by_action": {
+    "navigate": 4,
+    "scroll": 4,
+    "read_page": 4,
+    "follow_link": 3,
+    "open_file": 2,
+    "set_cells": 20,
+    "write_document": 1
+  },
+  "verified_cell_edits": 20,
+  "gui_save_count": 5,
+  "input_dispatch_count": 1070,
+  "typing_requested_interval_cv": 0.6490260852433005,
+  "typing_requested_entropy_bits_25ms_bins": 2.7836843511654115,
+  "typing_timing_note": "Requested onset intervals (legacy runs: post-key gaps); independent OS input observations are separate evidence.",
+  "timing_seconds": {
+    "behaviour.plan": 3.9307166659855284,
+    "behaviour.switch": 0.8193026249646209,
+    "behaviour.key_hold": 45.50697731791297,
+    "behaviour.typing": 73.09705262078205,
+    "application_wait_and_verification": 3.7923628729768097,
+    "runtime_overhead": 11.255047813756391,
+    "behaviour.scroll": 1.4359491658979096,
+    "behaviour.read": 12.93553487607278,
+    "behaviour.pointer": 4.243669708725065,
+    "behaviour.typo_notice": 1.02055629104143
+  },
+  "model_calls": 0,
+  "model_input_tokens": 0,
+  "model_output_tokens": 0,
+  "os_samples": 304,
+  "telemetry_incomplete_lines": 0,
+  "peak_combined_app_rss_bytes": 5557780480,
+  "peak_combined_cpu_percent": 153.4,
+  "runner_peak_rss_bytes": 142327808,
+  "runner_peak_cpu_percent": 22.8,
+  "evaluation_note": "Measured diagnostics, not a benchmark authenticity score.",
+  "backend": "macos",
+  "outcome": {
+    "route": "done",
+    "status": "completed",
+    "verification": {
+      "passed": true,
+      "errors": [],
+      "checked": [
+        "source evidence",
+        "cell values",
+        "formulas",
+        "cached calculation",
+        "report consistency"
+      ]
+    }
+  },
+  "real_desktop_verified": true,
+  "simulation_artifacts": false,
+  "input_observation": {
+    "coverage": {
+      "enabled": true,
+      "gaps": 0,
+      "errors": 0,
+      "dropped_events": 0,
+      "invalid_timestamps": 0
+    },
+    "recording_roles": [
+      "agent"
+    ],
+    "event_counts": {
+      "key_down": 896,
+      "key_up": 896,
+      "move": 171,
+      "scroll": 10,
+      "mouse_down": 3,
+      "mouse_up": 3,
+      "corrections": 4
+    },
+    "statistics": {
+      "inter_key_seconds": {
+        "count": 833,
+        "mean": 0.14837345002756575,
+        "median": 0.12248658301541582,
+        "p95": 0.387291458027903,
+        "cv": 0.6460986189442287
+      },
+      "key_hold_seconds": {
+        "count": 849,
+        "mean": 0.056018571171347925,
+        "median": 0.055055166012607515,
+        "p95": 0.07560858404031023,
+        "cv": 0.198163554473961
+      },
+      "idle_seconds": {
+        "count": 0,
+        "mean": null,
+        "median": null,
+        "p95": null,
+        "cv": null
+      },
+      "pointer_pixels_per_second": {
+        "count": 170,
+        "mean": 538.66530203529,
+        "median": 591.5725196749385,
+        "p95": 927.6643060235352,
+        "cv": 0.5613519931614728
+      }
+    }
+  }
+}

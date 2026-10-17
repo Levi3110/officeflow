@@ -1,0 +1,37 @@
+{
+  "audio_requested": false,
+  "duration_seconds": 189.99833333333333,
+  "frames": [
+    {
+      "file": "frame-10.png",
+      "seconds": 19.058333333333334
+    },
+    {
+      "file": "frame-40.png",
+      "seconds": 76.61666666666666
+    },
+    {
+      "file": "frame-65.png",
+      "seconds": 121.55
+    },
+    {
+      "file": "frame-95.png",
+      "seconds": 174.93333333333334
+    }
+  ],
+  "mp4_bytes": 27447546,
+  "mp4_duration_seconds": 189.99833333333333,
+  "source": "actual macOS screencapture recording; no synthetic/reconstructed frames",
+  "source_height": 1080,
+  "source_width": 1920,
+  "mp4_sha256": "9a149abbb8a6461c72de2b1b42012c3ded8e3ceff8287445fdc0e76de8b6696a",
+  "source_mov_sha256": "2bc6e69c9e042810574f93bd47f52d1a1c1419bbaafc4fb57143bfe01a30851e",
+  "visual_review": [
+    "browser product page at 19.06s",
+    "Calc entry at 76.62s",
+    "Writer typing at 121.55s",
+    "final saved report at 174.93s"
+  ],
+  "local_mp4_artifact": "dist/synthetic-human-agent-demo.mp4",
+  "video_committed_to_git": false
+}
