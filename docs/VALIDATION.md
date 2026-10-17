@@ -7,9 +7,9 @@ Python 3.14.6. Dependency versions are recorded in `uv.lock`.
 
 ```text
 uv sync --locked --extra dev --extra desktop
-pytest -q                         66 passed
+pytest -q                         74 passed
 ruff check src tests scripts      All checks passed
-ruff format --check src tests scripts  45 files already formatted
+ruff format --check src tests scripts  47 files already formatted
 sha run --output runs/final-optimized-demo
 sha inspect runs/final-optimized-demo
 sha run --output runs/final-optimized-demo --resume
@@ -195,3 +195,20 @@ null grades. Tests cover CPU integration/initial-sample exclusion, failure denom
 fixed-bin observed entropy, weight/priority preservation, overwrite rejection and prevention
 of simulation promotion despite misleading saved metadata. The full local suite passes
 **66 tests**; lint and formatting pass across **45 Python files**.
+
+## Optimization review follow-up (executed)
+
+See [OPTIMIZATION_REVIEW.md](OPTIMIZATION_REVIEW.md) for all three additional native attempts,
+paired sampler microbenchmarks, the unchanged human trace hash, slower intermediate core batches
+and the local stopping condition. All three native workflows passed 7/7 activity checks and
+closed input-quality gates. The optional human-05 profile was explicitly fitted on that reference;
+`sha evaluate --comparison-scope personalization_training` labels the result in-sample.
+
+Final same-seed native key-hold/inter-key KS is 0.148/0.155 against human-05; this is training
+fit, not a population benchmark. Final estimated runner CPU-time is 7.832 s versus 12.934 s
+before the collector metadata-cache change with the same persona/seed. The paired sampler
+confirmation measures a 71.4% reduction in sampler CPU cost, separately from whole-agent cost.
+Final and holdout simulation-core medians differ by less than 5%; no global maximum is claimed.
+
+All **74 tests** pass, and lint/format checks pass across **47 Python files**. No live model,
+Microsoft Office adapter or broad website parser was added.

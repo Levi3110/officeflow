@@ -1,0 +1,135 @@
+{
+  "assessment": "requested_activity_checklist",
+  "backend": "macos",
+  "policy_checks_passed": 7,
+  "desktop_checks_passed": 7,
+  "criteria_count": 7,
+  "criteria": [
+    {
+      "criterion": "browsing_websites",
+      "policy_check": "pass",
+      "desktop_check": "pass",
+      "evidence": {
+        "navigation_actions": 4,
+        "page_reads": 4
+      },
+      "limitation": "Demo is a local catalog; arbitrary websites/search are not evaluated."
+    },
+    {
+      "criterion": "scrolling",
+      "policy_check": "pass",
+      "desktop_check": "pass",
+      "evidence": {
+        "scroll_actions": 4,
+        "wheel_bursts_dispatched": 10,
+        "session_scroll_events_observed": 10,
+        "verified_viewport_changes": 4
+      },
+      "limitation": "Native scrolling needs matching AX content anchors moving relative to the web viewport."
+    },
+    {
+      "criterion": "clicking_links",
+      "policy_check": "pass",
+      "desktop_check": "pass",
+      "evidence": {
+        "mouse_link_activations": 3,
+        "keyboard_link_activations": 0
+      },
+      "limitation": "Keyboard fallback is reported separately and does not satisfy the mouse-click criterion."
+    },
+    {
+      "criterion": "interacting_with_applications",
+      "policy_check": "pass",
+      "desktop_check": "pass",
+      "evidence": {
+        "opened_files": 2,
+        "row_edits": 4,
+        "document_edits": 1,
+        "file_verification": {
+          "passed": true,
+          "errors": [],
+          "checked": [
+            "source evidence",
+            "cell values",
+            "formulas",
+            "cached calculation",
+            "report consistency"
+          ]
+        }
+      },
+      "limitation": null
+    },
+    {
+      "criterion": "contextual_pauses",
+      "policy_check": "pass",
+      "desktop_check": "pass",
+      "evidence": {
+        "behaviour.plan": {
+          "count": 22,
+          "requested_seconds": 3.9073282591232,
+          "elapsed_seconds": 3.9310681250644848
+        },
+        "behaviour.switch": {
+          "count": 2,
+          "requested_seconds": 0.8170283854296156,
+          "elapsed_seconds": 0.8193400420132093
+        },
+        "behaviour.scroll": {
+          "count": 6,
+          "requested_seconds": 1.4913210847253655,
+          "elapsed_seconds": 1.4979652490001172
+        },
+        "behaviour.read": {
+          "count": 8,
+          "requested_seconds": 12.919390569147762,
+          "elapsed_seconds": 12.932220458984375
+        }
+      },
+      "limitation": "Context-specific pauses can be checked without a baseline; human similarity remains unmeasured."
+    },
+    {
+      "criterion": "occasional_corrected_typos",
+      "policy_check": "pass",
+      "desktop_check": "pass",
+      "evidence": {
+        "typo_notice_count": 4,
+        "final_content_correct": true,
+        "session_corrections_observed": 4
+      },
+      "limitation": "Do not force a typo in every session. Session input may include unrelated user activity."
+    },
+    {
+      "criterion": "varied_delays",
+      "policy_check": "pass",
+      "desktop_check": "pass",
+      "evidence": {
+        "requested_interval_samples": 804,
+        "unique_millisecond_intervals": 382,
+        "requested_interval_cv": 0.787108886193208,
+        "observed_inter_key_statistics": {
+          "count": 832,
+          "mean": 0.250947437501194,
+          "median": 0.1841086040076334,
+          "p95": 0.6181010829750448,
+          "cv": 0.7593058412926891
+        }
+      },
+      "limitation": "Nonconstant timing is a capability check, not a measure of human similarity."
+    }
+  ],
+  "input_coverage": {
+    "enabled": true,
+    "completed": true,
+    "sessions_started": 1,
+    "sessions_stopped": 1,
+    "lifecycle_errors": 0,
+    "outside_session_events": 0,
+    "incomplete_lines": 0,
+    "gaps": 0,
+    "errors": 0,
+    "dropped_events": 0,
+    "invalid_timestamps": 0
+  },
+  "authenticity_score": null,
+  "note": "Checklist evidence only. Simulation passes are not GUI passes or a competition grade. Human-likeness requires empirical baseline evaluation."
+}

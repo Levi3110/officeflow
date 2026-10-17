@@ -6,7 +6,7 @@ import random
 import re
 import time
 
-from .models import Primitive
+from .models import Persona, Primitive
 
 
 class HumanBehaviourEngine:
@@ -30,7 +30,7 @@ class HumanBehaviourEngine:
         }
 
     def restore(self, state):
-        if state["persona"] != self.persona.model_dump():
+        if Persona.model_validate(state["persona"]).model_dump() != self.persona.model_dump():
             raise ValueError("persona differs from saved session; use original persona when resuming")
 
         def tuples(value):
@@ -121,7 +121,8 @@ class HumanBehaviourEngine:
                 await self.pause("behaviour.typo_notice", self.random.uniform(0.12, 0.4))
                 await emit(Primitive(kind="key", value="backspace"))
             interval = self.random.lognormvariate(
-                math.log((1 + self.fatigue) * self.rhythm / self.persona.characters_per_second), 0.24
+                math.log((1 + self.fatigue) * self.rhythm / self.persona.characters_per_second),
+                self.persona.typing_log_sigma,
             )
             if char in ".!?\n":
                 interval += self.random.uniform(0.15, 0.5)
@@ -130,7 +131,16 @@ class HumanBehaviourEngine:
                 if self.chunk_remaining <= 0:
                     interval += self.random.lognormvariate(math.log(0.24), 0.35)
                     self.chunk_remaining = self.random.randint(3, 7)
-            hold = min(interval * 0.65, self.random.lognormvariate(math.log(0.055), 0.22))
+            sampled_hold = self.random.lognormvariate(
+                math.log(self.persona.key_hold_median_seconds), self.persona.key_hold_log_sigma
+            )
+            if self.persona.independent_key_hold:
+                # Serial delivery cannot overlap keys. Preserve the independently sampled hold
+                # and extend a too-short onset; do not clip fast intervals into unnaturally short holds.
+                hold = min(0.45, sampled_hold)
+                interval = max(interval, hold + 0.012)
+            else:
+                hold = min(interval * 0.65, sampled_hold)
             await emit(
                 Primitive(
                     kind="text",

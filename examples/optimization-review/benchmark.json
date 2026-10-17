@@ -1,0 +1,789 @@
+{
+  "kind": "four_criterion_evidence_benchmark",
+  "created_at": "2026-10-17T13:44:49+00:00",
+  "native_verified": true,
+  "comparison_scope": "personalization_training",
+  "agent_label": "optimized-human05-native-03",
+  "human_label": "human-05",
+  "dimensions": [
+    {
+      "id": "process_telemetry_authenticity",
+      "name": "Process Telemetry Authenticity",
+      "weight": 0.3,
+      "priority": "unspecified",
+      "status": "independent_native_observations; similarity_unvalidated",
+      "score_0_100": null,
+      "weighted_points": null
+    },
+    {
+      "id": "human_entropy_timing",
+      "name": "Human Entropy & Timing",
+      "weight": 0.3,
+      "priority": "unspecified",
+      "status": "in_sample_personalization_comparison",
+      "score_0_100": null,
+      "weighted_points": null
+    },
+    {
+      "id": "complexity_of_action",
+      "name": "Complexity of Action",
+      "weight": 0.2,
+      "priority": "Secondary",
+      "status": "native_workflow_verified",
+      "score_0_100": null,
+      "weighted_points": null
+    },
+    {
+      "id": "resource_efficiency",
+      "name": "Resource Efficiency",
+      "weight": 0.2,
+      "priority": "Primary",
+      "status": "native_single_run_and_repeated_simulation",
+      "score_0_100": null,
+      "weighted_points": null
+    }
+  ],
+  "weighted_score": null,
+  "weighted_formula": "0.30*A + 0.30*H + 0.20*C + 0.20*R; all four calibrated scores required",
+  "priority_note": "Primary/Secondary are emphasis labels; they do not change the supplied weights.",
+  "process_telemetry": {
+    "profiles": {
+      "agent": {
+        "sample_count": 483,
+        "sample_window_seconds": 247.08688592910767,
+        "statistics": {
+          "runner_cpu_percent": {
+            "count": 482,
+            "mean": 3.1543568464730294,
+            "median": 2.6,
+            "p95": 6.8,
+            "cv": 0.6153309143473495,
+            "peak": 19.4
+          },
+          "runner_rss_mib": {
+            "count": 483,
+            "mean": 81.57670160455487,
+            "median": 72.4375,
+            "p95": 119.453125,
+            "cv": 0.27986920654543873,
+            "peak": 136.328125
+          },
+          "apps_cpu_percent": {
+            "count": 482,
+            "mean": 19.773858921161825,
+            "median": 14.95,
+            "p95": 51.5,
+            "cv": 0.8469600157878441,
+            "peak": 114.1
+          },
+          "apps_rss_mib": {
+            "count": 483,
+            "mean": 6506.487609989648,
+            "median": 6532.234375,
+            "p95": 7176.15625,
+            "cv": 0.06207801313174916,
+            "peak": 7288.890625
+          }
+        },
+        "foreground_samples_diagnostic_only": {
+          "Code": 2,
+          "Google Chrome": 124,
+          "LibreOffice": 357
+        },
+        "limitations": [
+          "Runner means agent workflow plus observer on the agent side, but observer only on the human side.",
+          "App totals include unrelated Chrome/LibreOffice sessions and may double-count shared memory.",
+          "Initial per-process CPU samples are excluded; short spikes between samples remain unobserved.",
+          "Passive-only AppKit foreground sampling may be stale; foreground samples are not validated dwell time.",
+          "These are different capture windows, not an isolated efficiency experiment or a cost of human cognition."
+        ],
+        "foreground_status_counts": {
+          "observed": 483
+        },
+        "foreground_source_counts": {
+          "NSWorkspace.main_run_loop": 483
+        },
+        "process_metadata_refresh_seconds_counts": {
+          "5.0": 483
+        },
+        "max_process_metadata_age_seconds": 4.6987326250527985,
+        "collector_errors": 0,
+        "sample_sources": {
+          "psutil": 483
+        },
+        "sample_backends": {
+          "macos": 483
+        },
+        "family_sample_presence": {
+          "Chrome": 483,
+          "LibreOffice": 483,
+          "runner": 483
+        },
+        "sampling_interval_seconds": {
+          "count": 482,
+          "mean": 0.512620140475108,
+          "median": 0.5109525624720845,
+          "p95": 0.5336570829967968,
+          "cv": 0.01516593350916945
+        },
+        "app_threads_per_sample": {
+          "count": 483,
+          "mean": 1280.7701863354037,
+          "median": 1276,
+          "p95": 1304,
+          "cv": 0.009929418320141041
+        },
+        "process_rows": 28774,
+        "io_available_rows": 0,
+        "runner_cpu_seconds_estimate": 7.832397793472401,
+        "runner_cpu_estimate_covered_seconds": 247.08290770900203,
+        "cpu_estimate_method": "Right-endpoint sum(cpu_percent / 100 * elapsed sample interval), excluding first CPU observations; diagnostic estimate, not a hardware counter or energy measure."
+      },
+      "human": {
+        "sample_count": 581,
+        "sample_window_seconds": 304.3769488334656,
+        "statistics": {
+          "runner_cpu_percent": {
+            "count": 580,
+            "mean": 4.594827586206897,
+            "median": 4.4,
+            "p95": 6.1,
+            "cv": 0.1669945394371447,
+            "peak": 7.4
+          },
+          "runner_rss_mib": {
+            "count": 581,
+            "mean": 46.769901032702236,
+            "median": 45.140625,
+            "p95": 52.15625,
+            "cv": 0.13599287192494408,
+            "peak": 79.8125
+          },
+          "apps_cpu_percent": {
+            "count": 580,
+            "mean": 20.80568965517241,
+            "median": 16.4,
+            "p95": 46.7,
+            "cv": 0.8145805252183305,
+            "peak": 131.6
+          },
+          "apps_rss_mib": {
+            "count": 581,
+            "mean": 5809.742711919105,
+            "median": 5829.84375,
+            "p95": 6158.203125,
+            "cv": 0.04487447248098399,
+            "peak": 6315.3125
+          }
+        },
+        "foreground_samples_diagnostic_only": {
+          "Code": 581
+        },
+        "limitations": [
+          "Runner means agent workflow plus observer on the agent side, but observer only on the human side.",
+          "App totals include unrelated Chrome/LibreOffice sessions and may double-count shared memory.",
+          "Initial per-process CPU samples are excluded; short spikes between samples remain unobserved.",
+          "Passive-only AppKit foreground sampling may be stale; foreground samples are not validated dwell time.",
+          "These are different capture windows, not an isolated efficiency experiment or a cost of human cognition."
+        ],
+        "foreground_status_counts": {
+          "legacy_unvalidated": 581
+        },
+        "foreground_source_counts": {
+          "legacy_unvalidated": 581
+        },
+        "process_metadata_refresh_seconds_counts": {
+          "legacy_unvalidated": 581
+        },
+        "max_process_metadata_age_seconds": null,
+        "collector_errors": 0,
+        "sample_sources": {
+          "psutil": 581
+        },
+        "sample_backends": {
+          "macos": 581
+        },
+        "family_sample_presence": {
+          "Chrome": 581,
+          "LibreOffice": 581,
+          "runner": 581
+        },
+        "sampling_interval_seconds": {
+          "count": 580,
+          "mean": 0.5247933846982678,
+          "median": 0.5249167289875913,
+          "p95": 0.5280944589758292,
+          "cv": 0.00796927357236325
+        },
+        "app_threads_per_sample": {
+          "count": 581,
+          "mean": 1257.8382099827884,
+          "median": 1256,
+          "p95": 1282,
+          "cv": 0.012901062340041767
+        },
+        "process_rows": 33947,
+        "io_available_rows": 0,
+        "runner_cpu_seconds_estimate": 13.991854338927187,
+        "runner_cpu_estimate_covered_seconds": 304.3801631249953,
+        "cpu_estimate_method": "Right-endpoint sum(cpu_percent / 100 * elapsed sample interval), excluding first CPU observations; diagnostic estimate, not a hardware counter or energy measure."
+      }
+    },
+    "all_matching_app_feature_comparison": {
+      "cpu_percent": {
+        "agent": {
+          "count": 482,
+          "mean": 19.773858921161825,
+          "median": 14.95,
+          "p95": 51.5,
+          "cv": 0.8469600157878441
+        },
+        "human": {
+          "count": 580,
+          "mean": 20.80568965517241,
+          "median": 16.4,
+          "p95": 46.7,
+          "cv": 0.8145805252183305
+        },
+        "distance": {
+          "ks": 0.10840606667620556,
+          "wasserstein": 1.914018457576192
+        }
+      },
+      "rss_mib": {
+        "agent": {
+          "count": 483,
+          "mean": 6506.487609989648,
+          "median": 6532.234375,
+          "p95": 7176.15625,
+          "cv": 0.06207801313174916
+        },
+        "human": {
+          "count": 581,
+          "mean": 5809.742711919105,
+          "median": 5829.84375,
+          "p95": 6158.203125,
+          "cv": 0.04487447248098399
+        },
+        "distance": {
+          "ks": 0.7723315622739405,
+          "wasserstein": 696.7448980705432
+        }
+      },
+      "threads": {
+        "agent": {
+          "count": 483,
+          "mean": 1280.7701863354037,
+          "median": 1276,
+          "p95": 1304,
+          "cv": 0.009929418320141041
+        },
+        "human": {
+          "count": 581,
+          "mean": 1257.8382099827884,
+          "median": 1256,
+          "p95": 1282,
+          "cv": 0.012901062340041767
+        },
+        "distance": {
+          "ks": 0.621167901419342,
+          "wasserstein": 22.931976352615433
+        }
+      }
+    },
+    "agent_observed_source_groups": {
+      "runner": 1989,
+      "unknown": 1
+    }
+  },
+  "human_entropy_timing": {
+    "comparison": {
+      "status": "descriptive_comparison",
+      "insufficient_evidence_reasons": {},
+      "agent": {
+        "coverage": {
+          "enabled": true,
+          "completed": true,
+          "sessions_started": 1,
+          "sessions_stopped": 1,
+          "lifecycle_errors": 0,
+          "outside_session_events": 0,
+          "incomplete_lines": 0,
+          "gaps": 0,
+          "errors": 0,
+          "dropped_events": 0,
+          "invalid_timestamps": 0
+        },
+        "recording_roles": [
+          "agent"
+        ],
+        "event_counts": {
+          "key_down": 888,
+          "repeat_key_downs": 0,
+          "key_up": 888,
+          "move": 198,
+          "scroll": 10,
+          "mouse_down": 3,
+          "mouse_up": 3,
+          "corrections": 4,
+          "nonrepeat_corrections": 4
+        },
+        "statistics": {
+          "inter_key_seconds": {
+            "count": 832,
+            "mean": 0.250947437501194,
+            "median": 0.1841086040076334,
+            "p95": 0.6181010829750448,
+            "cv": 0.7593058412926891
+          },
+          "key_hold_seconds": {
+            "count": 849,
+            "mean": 0.09374086793164643,
+            "median": 0.08657874999335036,
+            "p95": 0.17089958296855912,
+            "cv": 0.4323348833134104
+          },
+          "idle_seconds": {
+            "count": 1,
+            "mean": 2.0523630829993635,
+            "median": 2.0523630829993635,
+            "p95": 2.0523630829993635,
+            "cv": 0.0
+          },
+          "input_silence_seconds": {
+            "count": 4,
+            "mean": 3.6315829684899654,
+            "median": 3.628974061983172,
+            "p95": 4.2098985409829766,
+            "cv": 0.12393569374663099
+          },
+          "pointer_pixels_per_second": {
+            "count": 197,
+            "mean": 643.1448602849434,
+            "median": 667.7223173123413,
+            "p95": 1640.9915324787003,
+            "cv": 0.6647524715076457
+          }
+        },
+        "feature_notes": {
+          "idle_seconds": "Gaps over 2 seconds between unmodified key downs; shortcuts reset the sequence. This does not measure all reading/planning or absence of input.",
+          "input_silence_seconds": "Gaps over 2 seconds between any observed input events inside a session, excluding leading/trailing unobserved periods. Silence does not identify its purpose.",
+          "corrections": "Backspace/Delete key downs, including repeats; these also include intentional editing, not solely typing errors.",
+          "pointer_pixels_per_second": "Event-to-event velocities without resampling. Different sampling rates and small time intervals can skew means/tails."
+        }
+      },
+      "human": {
+        "coverage": {
+          "enabled": true,
+          "completed": true,
+          "sessions_started": 1,
+          "sessions_stopped": 1,
+          "lifecycle_errors": 0,
+          "outside_session_events": 0,
+          "incomplete_lines": 0,
+          "gaps": 0,
+          "errors": 0,
+          "dropped_events": 0,
+          "invalid_timestamps": 0
+        },
+        "recording_roles": [
+          "human"
+        ],
+        "event_counts": {
+          "move": 10743,
+          "mouse_down": 62,
+          "mouse_up": 62,
+          "scroll": 51,
+          "key_down": 708,
+          "repeat_key_downs": 9,
+          "key_up": 698,
+          "corrections": 92,
+          "nonrepeat_corrections": 83
+        },
+        "statistics": {
+          "inter_key_seconds": {
+            "count": 663,
+            "mean": 0.2419327537689483,
+            "median": 0.1512519590323791,
+            "p95": 0.7751538339653052,
+            "cv": 1.1324099498715983
+          },
+          "key_hold_seconds": {
+            "count": 682,
+            "mean": 0.09195629350091344,
+            "median": 0.08695985400117934,
+            "p95": 0.13592679100111127,
+            "cv": 0.5274997607214145
+          },
+          "idle_seconds": {
+            "count": 10,
+            "mean": 3.3036919792124535,
+            "median": 3.119257332989946,
+            "p95": 6.963715042045806,
+            "cv": 0.4029926610935533
+          },
+          "input_silence_seconds": {
+            "count": 5,
+            "mean": 3.278857516602147,
+            "median": 3.22301850002259,
+            "p95": 4.442040916008409,
+            "cv": 0.2889725622507639
+          },
+          "pointer_pixels_per_second": {
+            "count": 10742,
+            "mean": 3577.4294854359573,
+            "median": 360.5573974624941,
+            "p95": 7106.69580917297,
+            "cv": 12.055317103679082
+          }
+        },
+        "feature_notes": {
+          "idle_seconds": "Gaps over 2 seconds between unmodified key downs; shortcuts reset the sequence. This does not measure all reading/planning or absence of input.",
+          "input_silence_seconds": "Gaps over 2 seconds between any observed input events inside a session, excluding leading/trailing unobserved periods. Silence does not identify its purpose.",
+          "corrections": "Backspace/Delete key downs, including repeats; these also include intentional editing, not solely typing errors.",
+          "pointer_pixels_per_second": "Event-to-event velocities without resampling. Different sampling rates and small time intervals can skew means/tails."
+        }
+      },
+      "distances": {
+        "inter_key_seconds": {
+          "ks": 0.15528374811463053,
+          "wasserstein": 0.056301683259337536
+        },
+        "key_hold_seconds": {
+          "ks": 0.14800403441689203,
+          "wasserstein": 0.012653612128724187
+        },
+        "idle_seconds": {
+          "ks": 0.9,
+          "wasserstein": 1.256961896206485
+        },
+        "input_silence_seconds": {
+          "ks": 0.4,
+          "wasserstein": 0.554667881509522
+        },
+        "pointer_pixels_per_second": {
+          "ks": 0.2956151053741327,
+          "wasserstein": 3159.272161848785
+        }
+      },
+      "weighted_score": null,
+      "note": "No calibrated rubric score. Smaller empirical distances mean closer distributions, not proof of human identity. Samples are temporally correlated; no independence-based p-values are reported."
+    },
+    "observed_inter_key_entropy_bits_25ms_bins": {
+      "agent": 4.385787708213178,
+      "human": 4.261947165277374
+    }
+  },
+  "complexity": {
+    "assessment": {
+      "assessment": "requested_activity_checklist",
+      "backend": "macos",
+      "policy_checks_passed": 7,
+      "desktop_checks_passed": 7,
+      "criteria_count": 7,
+      "criteria": [
+        {
+          "criterion": "browsing_websites",
+          "policy_check": "pass",
+          "desktop_check": "pass",
+          "evidence": {
+            "navigation_actions": 4,
+            "page_reads": 4
+          },
+          "limitation": "Demo is a local catalog; arbitrary websites/search are not evaluated."
+        },
+        {
+          "criterion": "scrolling",
+          "policy_check": "pass",
+          "desktop_check": "pass",
+          "evidence": {
+            "scroll_actions": 4,
+            "wheel_bursts_dispatched": 10,
+            "session_scroll_events_observed": 10,
+            "verified_viewport_changes": 4
+          },
+          "limitation": "Native scrolling needs matching AX content anchors moving relative to the web viewport."
+        },
+        {
+          "criterion": "clicking_links",
+          "policy_check": "pass",
+          "desktop_check": "pass",
+          "evidence": {
+            "mouse_link_activations": 3,
+            "keyboard_link_activations": 0
+          },
+          "limitation": "Keyboard fallback is reported separately and does not satisfy the mouse-click criterion."
+        },
+        {
+          "criterion": "interacting_with_applications",
+          "policy_check": "pass",
+          "desktop_check": "pass",
+          "evidence": {
+            "opened_files": 2,
+            "row_edits": 4,
+            "document_edits": 1,
+            "file_verification": {
+              "passed": true,
+              "errors": [],
+              "checked": [
+                "source evidence",
+                "cell values",
+                "formulas",
+                "cached calculation",
+                "report consistency"
+              ]
+            }
+          },
+          "limitation": null
+        },
+        {
+          "criterion": "contextual_pauses",
+          "policy_check": "pass",
+          "desktop_check": "pass",
+          "evidence": {
+            "behaviour.plan": {
+              "count": 22,
+              "requested_seconds": 3.9073282591232,
+              "elapsed_seconds": 3.9310681250644848
+            },
+            "behaviour.switch": {
+              "count": 2,
+              "requested_seconds": 0.8170283854296156,
+              "elapsed_seconds": 0.8193400420132093
+            },
+            "behaviour.scroll": {
+              "count": 6,
+              "requested_seconds": 1.4913210847253655,
+              "elapsed_seconds": 1.4979652490001172
+            },
+            "behaviour.read": {
+              "count": 8,
+              "requested_seconds": 12.919390569147762,
+              "elapsed_seconds": 12.932220458984375
+            }
+          },
+          "limitation": "Context-specific pauses can be checked without a baseline; human similarity remains unmeasured."
+        },
+        {
+          "criterion": "occasional_corrected_typos",
+          "policy_check": "pass",
+          "desktop_check": "pass",
+          "evidence": {
+            "typo_notice_count": 4,
+            "final_content_correct": true,
+            "session_corrections_observed": 4
+          },
+          "limitation": "Do not force a typo in every session. Session input may include unrelated user activity."
+        },
+        {
+          "criterion": "varied_delays",
+          "policy_check": "pass",
+          "desktop_check": "pass",
+          "evidence": {
+            "requested_interval_samples": 804,
+            "unique_millisecond_intervals": 382,
+            "requested_interval_cv": 0.787108886193208,
+            "observed_inter_key_statistics": {
+              "count": 832,
+              "mean": 0.250947437501194,
+              "median": 0.1841086040076334,
+              "p95": 0.6181010829750448,
+              "cv": 0.7593058412926891
+            }
+          },
+          "limitation": "Nonconstant timing is a capability check, not a measure of human similarity."
+        }
+      ],
+      "input_coverage": {
+        "enabled": true,
+        "completed": true,
+        "sessions_started": 1,
+        "sessions_stopped": 1,
+        "lifecycle_errors": 0,
+        "outside_session_events": 0,
+        "incomplete_lines": 0,
+        "gaps": 0,
+        "errors": 0,
+        "dropped_events": 0,
+        "invalid_timestamps": 0
+      },
+      "authenticity_score": null,
+      "note": "Checklist evidence only. Simulation passes are not GUI passes or a competition grade. Human-likeness requires empirical baseline evaluation."
+    },
+    "verified_actions": {
+      "navigate": 4,
+      "scroll": 4,
+      "read_page": 4,
+      "follow_link": 3,
+      "open_file": 2,
+      "set_cells": 4,
+      "write_document": 1
+    },
+    "verified_action_total": 22,
+    "handoffs": 5,
+    "cell_edits": 20,
+    "gui_saves": 5
+  },
+  "resource_efficiency": {
+    "native_runner": {
+      "runner_cpu_percent": {
+        "count": 482,
+        "mean": 3.1543568464730294,
+        "median": 2.6,
+        "p95": 6.8,
+        "cv": 0.6153309143473495,
+        "peak": 19.4
+      },
+      "runner_rss_mib": {
+        "count": 483,
+        "mean": 81.57670160455487,
+        "median": 72.4375,
+        "p95": 119.453125,
+        "cv": 0.27986920654543873,
+        "peak": 136.328125
+      },
+      "apps_cpu_percent": {
+        "count": 482,
+        "mean": 19.773858921161825,
+        "median": 14.95,
+        "p95": 51.5,
+        "cv": 0.8469600157878441,
+        "peak": 114.1
+      },
+      "apps_rss_mib": {
+        "count": 483,
+        "mean": 6506.487609989648,
+        "median": 6532.234375,
+        "p95": 7176.15625,
+        "cv": 0.06207801313174916,
+        "peak": 7288.890625
+      }
+    },
+    "native_runner_cpu_seconds_estimate": 7.832397793472401,
+    "timing_seconds": {
+      "behaviour.plan": 3.9310681250644848,
+      "behaviour.switch": 0.8193400420132093,
+      "behaviour.key_hold": 77.68495196825825,
+      "behaviour.typing": 127.9589803123963,
+      "application_wait_and_verification": 4.159377790987492,
+      "runtime_overhead": 10.784887382702436,
+      "behaviour.pointer": 4.895657043671235,
+      "behaviour.scroll": 1.4979652490001172,
+      "behaviour.read": 12.932220458984375,
+      "behaviour.typo_notice": 1.0214094589464366
+    },
+    "model_calls": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "core": {
+      "kind": "simulation.core.benchmark",
+      "platform": "macOS-26.4-arm64-arm-64bit-Mach-O",
+      "python": "3.14.6",
+      "trial_count": 9,
+      "completed_trials": 9,
+      "summary": {
+        "workflow_seconds": {
+          "median": 0.06071991700446233,
+          "p95": 0.061555000371299684
+        },
+        "workflow_cpu_seconds": {
+          "median": 0.04610800000000001,
+          "p95": 0.04695919999999999
+        },
+        "maxrss_bytes": {
+          "median": 93782016,
+          "p95": 93824614.4
+        },
+        "import_seconds": {
+          "median": 0.19134183297865093,
+          "p95": 0.23627455822424961
+        },
+        "export_seconds": {
+          "median": 0.007649500039406121,
+          "p95": 0.01108816642081365
+        },
+        "input_dispatches": {
+          "median": 908,
+          "p95": 913.6
+        },
+        "actions": {
+          "median": 22,
+          "p95": 22.0
+        },
+        "audit_bytes": {
+          "median": 506543,
+          "p95": 508641.0
+        },
+        "database_bytes": {
+          "median": 548864,
+          "p95": 548864.0
+        }
+      },
+      "scope": "Fresh-process simulation core only. No GUI, realtime behaviour sleeps or OS collector. Every supplied trial remains in the denominator and summaries, including failures."
+    }
+  },
+  "limitations": [
+    "Human reference data was used to fit this persona. Comparison is in-sample training evidence, not held-out human evaluation or generalisation.",
+    "One selected agent trace and one participant/session. People differ in typing, editing, shortcuts, navigation and problem-solving; no universal human baseline or close-match claim follows.",
+    "Independent sampler provenance is evidence of real measurements, not proof of human-like process patterns. Source metadata exposes generated input; no hardware-origin disguise is attempted.",
+    "All matching app processes include unrelated sessions, and RSS may double-count shared memory. Foreground labels can be stale; they are excluded from dwell/completion conclusions. Process I/O may be unavailable; kernel/network traces are absent.",
+    "Human runner observes only; agent runner plans and executes too. Human/agent runner CPU and RSS are not like-for-like cognitive efficiency measures.",
+    "Small silence samples, unequal event cadences, correlated events and unmatched manual text limit inference. More entropy is not automatically better.",
+    "Native resource diagnostics are one selected run, with video/screenshot overhead and uncontrolled background load. Core trials are simulation, not desktop throughput or a native success rate.",
+    "The retained successful native demo does not supply an all-attempt reliability denominator. Earlier development failures exist. Human task completion is user-reported; manual output correctness was not independently verified.",
+    "No calibrated 0-100 scoring thresholds, process baseline population or isolated native efficiency baseline were supplied. Weights alone cannot produce a valid competition grade; every grade remains null."
+  ],
+  "provenance": {
+    "agent/inputs.jsonl": {
+      "sha256": "fcf869800fd02c466e20711e4424ecdf51468f850273340a0d27d1fccf4f1801",
+      "bytes": 463506
+    },
+    "agent/telemetry.jsonl": {
+      "sha256": "699ab059b4923ee0cb2a1b3709b1909275ad5b8ef3032832e482f7b3eff8f099",
+      "bytes": 7470128
+    },
+    "agent/metrics.json": {
+      "sha256": "73e30c60ea5fcbff327706e935170f820a7828407cc84c62fb43e9a4582fd495",
+      "bytes": 4335
+    },
+    "agent/audit.jsonl": {
+      "sha256": "ffe5a424ad83a6eb3b63c47095f7439c05eca5b8a5695ff243a3f876794ca51b",
+      "bytes": 592682
+    },
+    "agent/comparison.ods": {
+      "sha256": "c6565f0f38ca8b821be76666be80593cf5cbcf2fe4ce628559965650d0ec437a",
+      "bytes": 10992
+    },
+    "agent/report.odt": {
+      "sha256": "c95a689f540e7e55e5634d409a73245d797b56f2320e45e028da018912db9e43",
+      "bytes": 13882
+    },
+    "agent/state.sqlite": {
+      "sha256": "cc73953357d2d4a7b9ee129d5767dd1c6cee643a5dbad5fb29f61ec3d7c1998e",
+      "bytes": 638976
+    },
+    "human/inputs.jsonl": {
+      "sha256": "488fff01e25ad4b9c4c5599e05b3eea15943b23ff62bdd7a3350abd2ea1b04b9",
+      "bytes": 2135534
+    },
+    "human/telemetry.jsonl": {
+      "sha256": "c7f711b538fe888639032f13c2272db3e86bd01b55c89462b9a7452afc845d77",
+      "bytes": 6057394
+    },
+    "agent/state.sqlite-wal": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "core/optimization-review-final-core.json": {
+      "sha256": "22669cf2feabc910708c732c0d50631337ecfcf81ee5d3fa2cf2e230d562f84b",
+      "bytes": 4944
+    }
+  },
+  "analysis_code_sha256": {
+    "rubric.py": "39418a09b82362e9f87a83e683e3df62720bcd32e63bcc3fdaf592f43d05d455",
+    "evaluation.py": "37b4cc49d296ea05d4fcaf6ed550bd26d431e033fe6f743fec0005a810ce5895",
+    "assessment.py": "5ca4b29bf02c52969d48a944160693eb1166022c4e082aecca24fe5d9ae25d97",
+    "reporting.py": "191300dc50820d93af6ee71b2465be80c918a2a3d4b2b8b293e5d0dfd9646b4e",
+    "benchmark.py": "dc12de226419dfcdadad3cf0b0b22779826672b7a04f42abd0769cfa7f87a50b"
+  }
+}

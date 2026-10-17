@@ -1,0 +1,26 @@
+{
+  "backend": "simulation",
+  "browser_app": "Google Chrome",
+  "office_app": "LibreOffice",
+  "persona": {
+    "seed": 17,
+    "characters_per_second": 6.6115,
+    "typo_probability": 0.018,
+    "pause_scale": 1.0,
+    "typing_log_sigma": 0.8095,
+    "key_hold_median_seconds": 0.08696,
+    "key_hold_log_sigma": 0.3962,
+    "independent_key_hold": true
+  },
+  "action_timeout": 240,
+  "lease_seconds": 300,
+  "max_retries": 1,
+  "max_handoffs": 12,
+  "max_no_progress": 3,
+  "model_url": null,
+  "model_name": "qwen3:8b",
+  "model_timeout": 30,
+  "screenshot_on_checkpoint": true,
+  "sample_interval": 0.5,
+  "max_recoveries": 2
+}

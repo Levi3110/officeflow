@@ -110,7 +110,8 @@ class Runtime:
             return
         deadline = now + (12 if wait else 0)
         while True:
-            observation = await self.backend.observe()
+            observe_focus = getattr(self.backend, "observe_focus", self.backend.observe)
+            observation = await observe_focus()
             if observation.application == self.adapters.expected_app(action):
                 if action.kind in ("set_cell", "set_cells", "write_document") and not document_matches(
                     action.target, observation
@@ -289,7 +290,8 @@ class Runtime:
                 )
                 await asyncio.sleep(0.15)
                 continue
-            if scroll_verified and matches(action, observation, self.backend):
+            page_text = self.backend.read_clipboard() if browser else None
+            if scroll_verified and matches(action, observation, self.backend, clipboard_text=page_text):
                 break
             if time.monotonic() >= deadline:
                 raise UncertainAction(
@@ -305,7 +307,7 @@ class Runtime:
             "application_wait_seconds": time.monotonic() - started,
         }
         if browser:
-            text = self.backend.read_clipboard()
+            text = page_text
             evidence = self.directory / "evidence" / f"{action.id}.txt"
             evidence.parent.mkdir(exist_ok=True)
             evidence.write_text(text)

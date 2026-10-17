@@ -1,0 +1,16 @@
+{
+  "purpose": "Optional individual personalization, fitted to human-05; comparison against human-05 is in-sample, not held-out evaluation or a population score.",
+  "input_role": "human",
+  "input_sha256": "488fff01e25ad4b9c4c5599e05b3eea15943b23ff62bdd7a3350abd2ea1b04b9",
+  "method": "Active inter-key median -> reciprocal characters/second; log standard deviations and key-hold median -> lognormal parameters. Word/context pauses remain unchanged. Serial key holds impose a minimum onset and cannot model overlapping keys.",
+  "parameters": {
+    "seed": 17,
+    "characters_per_second": 6.6115,
+    "typo_probability": 0.018,
+    "pause_scale": 1.0,
+    "typing_log_sigma": 0.8095,
+    "key_hold_median_seconds": 0.08696,
+    "key_hold_log_sigma": 0.3962,
+    "independent_key_hold": true
+  }
+}

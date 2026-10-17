@@ -1,0 +1,364 @@
+{
+  "kind": "real_os_sampler_microbenchmark",
+  "platform": "macOS-26.4-arm64-arm-64bit-Mach-O",
+  "baseline_ref": "111bf38",
+  "baseline_code_sha256": "5499c161193bcfb3e266db384fac58f40751707b813d8193b42812ebb4e0d6f4",
+  "optimized_code_sha256": "8add25253ce6f9779499dc27015c5fe48ab00a8687334c46a31e31cd4f3cb488",
+  "pairs": 9,
+  "samples_per_batch": 10,
+  "records": [
+    {
+      "pair": 0,
+      "variant": "baseline",
+      "samples": 10,
+      "cpu_ms_per_sample": 6.736800000000001,
+      "wall_ms_per_sample": 6.753916700836271,
+      "observed_process_rows_per_sample": [
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "pair": 0,
+      "variant": "optimized",
+      "samples": 10,
+      "cpu_ms_per_sample": 1.8704999999999998,
+      "wall_ms_per_sample": 1.8757333979010582,
+      "observed_process_rows_per_sample": [
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "pair": 1,
+      "variant": "optimized",
+      "samples": 10,
+      "cpu_ms_per_sample": 1.7671999999999994,
+      "wall_ms_per_sample": 1.7672292015049607,
+      "observed_process_rows_per_sample": [
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "pair": 1,
+      "variant": "baseline",
+      "samples": 10,
+      "cpu_ms_per_sample": 6.741200000000001,
+      "wall_ms_per_sample": 6.746729201404378,
+      "observed_process_rows_per_sample": [
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "pair": 2,
+      "variant": "baseline",
+      "samples": 10,
+      "cpu_ms_per_sample": 6.5325000000000015,
+      "wall_ms_per_sample": 6.536270800279453,
+      "observed_process_rows_per_sample": [
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "pair": 2,
+      "variant": "optimized",
+      "samples": 10,
+      "cpu_ms_per_sample": 1.8795999999999977,
+      "wall_ms_per_sample": 1.8822374986484647,
+      "observed_process_rows_per_sample": [
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "pair": 3,
+      "variant": "optimized",
+      "samples": 10,
+      "cpu_ms_per_sample": 1.827399999999996,
+      "wall_ms_per_sample": 1.8288333027157933,
+      "observed_process_rows_per_sample": [
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "pair": 3,
+      "variant": "baseline",
+      "samples": 10,
+      "cpu_ms_per_sample": 7.1123999999999965,
+      "wall_ms_per_sample": 7.118929194984958,
+      "observed_process_rows_per_sample": [
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "pair": 4,
+      "variant": "baseline",
+      "samples": 10,
+      "cpu_ms_per_sample": 6.963500000000001,
+      "wall_ms_per_sample": 6.969179201405495,
+      "observed_process_rows_per_sample": [
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "pair": 4,
+      "variant": "optimized",
+      "samples": 10,
+      "cpu_ms_per_sample": 1.8780999999999992,
+      "wall_ms_per_sample": 1.8788709014188498,
+      "observed_process_rows_per_sample": [
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "pair": 5,
+      "variant": "optimized",
+      "samples": 10,
+      "cpu_ms_per_sample": 1.9081000000000015,
+      "wall_ms_per_sample": 1.9083334016613662,
+      "observed_process_rows_per_sample": [
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "pair": 5,
+      "variant": "baseline",
+      "samples": 10,
+      "cpu_ms_per_sample": 9.033400000000004,
+      "wall_ms_per_sample": 11.037112498888746,
+      "observed_process_rows_per_sample": [
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "pair": 6,
+      "variant": "baseline",
+      "samples": 10,
+      "cpu_ms_per_sample": 9.114500000000003,
+      "wall_ms_per_sample": 9.66715420363471,
+      "observed_process_rows_per_sample": [
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "pair": 6,
+      "variant": "optimized",
+      "samples": 10,
+      "cpu_ms_per_sample": 2.526600000000001,
+      "wall_ms_per_sample": 2.6442790986038744,
+      "observed_process_rows_per_sample": [
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "pair": 7,
+      "variant": "optimized",
+      "samples": 10,
+      "cpu_ms_per_sample": 2.082700000000004,
+      "wall_ms_per_sample": 2.6516125013586134,
+      "observed_process_rows_per_sample": [
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "pair": 7,
+      "variant": "baseline",
+      "samples": 10,
+      "cpu_ms_per_sample": 6.913799999999992,
+      "wall_ms_per_sample": 6.921383301960304,
+      "observed_process_rows_per_sample": [
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "pair": 8,
+      "variant": "baseline",
+      "samples": 10,
+      "cpu_ms_per_sample": 6.803099999999995,
+      "wall_ms_per_sample": 6.987945799482986,
+      "observed_process_rows_per_sample": [
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    },
+    {
+      "pair": 8,
+      "variant": "optimized",
+      "samples": 10,
+      "cpu_ms_per_sample": 1.9098999999999975,
+      "wall_ms_per_sample": 1.9111874978989363,
+      "observed_process_rows_per_sample": [
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55,
+        55
+      ]
+    }
+  ],
+  "summary": {
+    "baseline": {
+      "cpu_ms_per_sample": 6.913799999999992,
+      "wall_ms_per_sample": 6.969179201405495
+    },
+    "optimized": {
+      "cpu_ms_per_sample": 1.8795999999999977,
+      "wall_ms_per_sample": 1.8822374986484647
+    }
+  },
+  "note": "Real process APIs, alternating variant order. Simulation mode here excludes GUI/Quartz/focus work only; no simulated process measurements are emitted. Warmed microbenchmark without sleeps; optimized metadata expiry is forced once per ten samples to model normal cadence. This is sampler CPU cost, not desktop throughput, human authenticity, or total native agent cost."
+}

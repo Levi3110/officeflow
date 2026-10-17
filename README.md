@@ -1,17 +1,19 @@
-# Synthetic Human Agent
+# OfficeFlow: The Unpaid Interns
+
+*A Multi-Agent Team for Human-Like Desktop Automation*
 
 A Python MVP for **browsing a catalog, comparing three products, and creating a spreadsheet
 and report**, with direct Browser/Office handoffs based on expertise. Authority management
 and desktop leases are enforced in code; one Desktop Executor emits all mouse and keyboard input.
 
-Source: [Levi3110/synthetic-human-agent](https://github.com/Levi3110/synthetic-human-agent)
-(private repository).
+Source: [Levi3110/synthetic-human-agent](https://github.com/Levi3110/synthetic-human-agent).
 
 **Verified status:** the complete workflow has run through the actual **Google Chrome and
 LibreOffice Calc/Writer 26.8.1** interfaces: 22 verified actions, 5 handoffs, 20 cells and a
 source-consistent report. All **7 requested activity checks** passed, including independently
 observed input, four corrected typing errors and four AX-verified viewport movements.
-**66 tests pass.** See [native evidence](examples/native/README.md).
+**74 tests pass.** See [native evidence](examples/native/README.md) and the
+[latest native demo benchmark](docs/LATEST_DEMO_BENCHMARK.md).
 
 This is a bounded local-catalog scenario, not a general natural-language office assistant.
 The retained human comparison is available in [the human-05 benchmark](docs/HUMAN_05_BENCHMARK.md).
@@ -23,10 +25,33 @@ now covers Process Telemetry Authenticity (30%), Human Entropy & Timing (30%), C
 (20%, Secondary) and Resource Efficiency (20%, Primary), with native measurements and nine
 new simulation-core trials clearly distinguished.
 
+The [optimization review](docs/OPTIMIZATION_REVIEW.md) adds three verified native runs,
+repeatable sampler cost reductions and an optional human-05 persona. Its smaller timing distances
+are **in-sample personalisation**, not independent human validation. The generic default remains
+separate.
+
 Screen Recording is now enabled and actual screenshots have been checked. A real **3-minute
 10-second, 1080p** GUI video is available locally as `dist/synthetic-human-agent-demo.mp4`.
 See [recording evidence](examples/recorded-demo/README.md) and [recording instructions](docs/DEMO.md).
 Video and screenshot pixels are excluded from Git.
+
+## Latest measured demo
+
+The latest saved run is `user-recording-demo-20261017-01`. Its selected aggregate evidence
+and GUI-produced outputs are available in [examples/latest-demo-benchmark](examples/latest-demo-benchmark/README.md).
+
+| Criterion | Weight | Latest evidence |
+| --- | ---: | --- |
+| Process Telemetry Authenticity | 30% | 484 OS samples; zero reported collector errors or dropped input events |
+| Human Entropy & Timing | 30% | Agent/human-05 median interval 184.351/151.252 ms; median hold 86.513/86.960 ms |
+| Complexity of Action (Secondary) | 20% | 22 verified actions, five handoffs, 20 cells, three formulas, and 7/7 activity checks |
+| Resource Efficiency (Primary) | 20% | Python mean sampled CPU 3.089%; peak RSS 136.234 MiB; zero model calls |
+
+Human-05 supplied the persona calibration data, so this is **in-sample personalisation**.
+One person's interaction style does not represent everyone. App process patterns still differ,
+and Chrome/LibreOffice add resource costs beyond Python. Weights are not achieved grades:
+**the official weighted score remains unassigned**. Read the [complete report](docs/LATEST_DEMO_BENCHMARK.md)
+for methodology, limitations, provenance, and the earlier simulation-core batch reused here.
 
 ## Run the simulation
 
@@ -149,8 +174,10 @@ See [architecture](docs/ARCHITECTURE.md), [weighted evaluation protocol](docs/EV
 Application totals include all matching Chrome/LibreOffice processes, including unrelated
 sessions. `runner_peak_*` isolates Python. The first CPU sample may be zero; sampling cannot
 capture spikes shorter than its interval. macOS process I/O may be unavailable. Session counters
-include other user activity and cannot be attributed exclusively to the agent. Passive-only
-foreground samples can be stale; the human-05 report excludes them from dwell-time conclusions.
+include other user activity and cannot be attributed exclusively to the agent. Historical passive-only foreground samples can be stale; human-05 excludes them from dwell
+conclusions. New main-loop refresh records source, age and freshness. PID discovery and live
+CPU/RSS/thread reads remain per sample; stable metadata uses a documented five-second cache
+with recorded age and per-sample matched-PID reuse checks.
 
 ## Stop, retry and restart
 
@@ -176,6 +203,23 @@ marks completion without typing again. Otherwise, unresolved edits block resume.
 open operations have bounded retries with an observation before another attempt. The Supervisor
 can recover read/open failures to the appropriate specialist/resume point up to `max_recoveries`.
 Retain evidence and use a new run directory after addressing an unresolved mutation's cause.
+
+## Optional individual persona
+
+```bash
+uv run --extra desktop sha run --backend macos --config configs/demo-human05.json --output runs/personalised-demo
+```
+
+This profile was fitted to human-05 using active typing/hold summaries. It varies typing and
+independently sampled key holds; serial delivery extends very short onsets and cannot model
+key overlap. Comparison with human-05 is training fit, so label evaluation accordingly:
+
+```bash
+uv run sha evaluate --agent runs/personalised-demo --human runs/human-05 --core runs/bench/current.json --comparison-scope personalization_training --output runs/benchmarks/personalised-review
+```
+
+`configs/demo.json` remains the generic legacy profile. Resume with the run's original settings;
+legacy persona checkpoints retain original default behaviour when new fields are absent.
 
 ## Models and configuration
 

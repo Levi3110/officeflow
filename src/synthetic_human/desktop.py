@@ -211,11 +211,15 @@ class MacDesktop:
             pending.extend(self._attribute(element, "AXChildren") or [])
         return None
 
-    async def observe(self, screenshot=None):
+    async def observe_focus(self):
+        # Frequent fencing needs app/document identity, not the full focused editor contents.
+        return self._identity_observation(include_focus=False)
+
+    def _identity_observation(self, include_focus=True):
         app = self._front_application()
         ax_app = self.AX.AXUIElementCreateApplication(app.processIdentifier())
         window = self._attribute(ax_app, "AXFocusedWindow")
-        focus = self._attribute(ax_app, "AXFocusedUIElement")
+        focus = self._attribute(ax_app, "AXFocusedUIElement") if include_focus else None
         title = str(self._attribute(window, "AXTitle") or "") if window else ""
         document_uri = str(self._attribute(window, "AXDocument") or "") if window else ""
         focus_text = ""
@@ -224,6 +228,17 @@ class MacDesktop:
                 str(self._attribute(focus, key) or "")
                 for key in ("AXRole", "AXTitle", "AXDescription", "AXValue")
             )[:4000]
+        return Observation(
+            timestamp=time.time(),
+            application=str(app.localizedName()),
+            title=title,
+            document_uri=document_uri,
+            focus=focus_text,
+            accessibility=focus_text,
+        )
+
+    async def observe(self, screenshot=None):
+        observation = self._identity_observation()
         screenshot_path = None
         error = None
         if screenshot:
@@ -235,16 +250,7 @@ class MacDesktop:
                     error = str(exc)
             else:
                 error = "Screen Recording permission missing; screenshot unavailable"
-        return Observation(
-            timestamp=time.time(),
-            application=str(app.localizedName()),
-            title=title,
-            document_uri=document_uri,
-            focus=focus_text,
-            accessibility=focus_text,
-            screenshot=screenshot_path,
-            error=error,
-        )
+        return observation.model_copy(update={"screenshot": screenshot_path, "error": error})
 
 
 def document_matches(target, observation):
@@ -252,7 +258,7 @@ def document_matches(target, observation):
     return uri.scheme == "file" and Path(unquote(uri.path)).resolve() == Path(target).resolve()
 
 
-def matches(action, observation, desktop):
+def matches(action, observation, desktop, clipboard_text=None):
     """Read independently persisted document state; never trust command success alone."""
     if action.kind in ("set_cell", "set_cells"):
         try:
@@ -288,5 +294,6 @@ def matches(action, observation, desktop):
     if action.kind == "open_file":
         return desktop.mode == "simulation" or document_matches(action.target, observation)
     if action.kind in ("navigate", "follow_link", "read_page"):
-        return action.expected.get("contains", "") in desktop.read_clipboard()
+        text = desktop.read_clipboard() if clipboard_text is None else clipboard_text
+        return action.expected.get("contains", "") in text
     return True

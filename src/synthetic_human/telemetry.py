@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import asyncio
 import json
 import math
 import os
@@ -12,34 +13,84 @@ from collections import Counter
 import psutil
 
 
+def read_macos_foreground():
+    """AppKit focus must be refreshed on the main run loop, including passive sessions."""
+    import AppKit
+    import CoreFoundation as CF
+
+    CF.CFRunLoopRunInMode(CF.kCFRunLoopDefaultMode, 0.002, False)
+    app = AppKit.NSWorkspace.sharedWorkspace().frontmostApplication()
+    if app is None:
+        raise RuntimeError("No foreground application was reported")
+    return {"pid": int(app.processIdentifier()), "name": str(app.localizedName())}
+
+
 class TelemetryCollector:
     """Independent OS sampler. It never consumes executor commands to invent activity."""
 
-    def __init__(self, path, mode, interval=0.5):
+    def __init__(self, path, mode, interval=0.5, metadata_refresh_seconds=5.0):
         self.path, self.mode, self.interval = path, mode, interval
         self.stopped = threading.Event()
         self.thread = None
         self.processes = {}
+        self.process_metadata = {}
+        self.metadata_refresh_seconds = metadata_refresh_seconds
+        self.foreground_task = None
+        self.foreground_snapshot = None
+
+    def _refresh_foreground(self):
+        try:
+            self.foreground_snapshot = (time.monotonic(), read_macos_foreground(), None)
+        except Exception as exc:
+            self.foreground_snapshot = (time.monotonic(), None, str(exc))
+
+    async def _monitor_foreground(self):
+        while not self.stopped.is_set():
+            await asyncio.sleep(self.interval)
+            self._refresh_foreground()
 
     def start(self):
+        if self.mode == "macos" and platform.system() == "Darwin":
+            # The OS sampler remains independent; this main-loop heartbeat refreshes only focus.
+            # It emits no input and is needed when capture-human is otherwise just asyncio.sleep.
+            try:
+                loop = asyncio.get_running_loop()
+                if threading.current_thread() is not threading.main_thread():
+                    raise RuntimeError("Foreground monitoring requires the main thread")
+                self._refresh_foreground()
+                self.foreground_task = loop.create_task(self._monitor_foreground())
+            except RuntimeError as exc:
+                self.foreground_snapshot = (time.monotonic(), None, str(exc))
         self.thread = threading.Thread(target=self._run, name="os-telemetry", daemon=True)
         self.thread.start()
 
     def _sample(self):
         rows = []
         alive = set()
-        for info in psutil.process_iter(["pid", "name", "create_time"]):
+        sampled_at = time.monotonic()
+        pids = set(psutil.pids())  # Discover new PIDs every sample; refresh stable names less often.
+        for pid in pids:
             try:
-                name = info.info["name"] or ""
-                if info.pid != os.getpid() and not any(
+                cached = self.process_metadata.get(pid)
+                proc = self.processes.get((pid, cached["created"])) if cached else None
+                if proc is not None and not proc.is_running():
+                    cached = None  # PID reuse: never carry CPU history into a different process.
+                if cached is None or sampled_at - cached["checked_at"] >= self.metadata_refresh_seconds:
+                    candidate = psutil.Process(pid)
+                    with candidate.oneshot():
+                        name, created = candidate.name(), candidate.create_time()
+                    cached = {"name": name, "created": created, "checked_at": sampled_at}
+                    self.process_metadata[pid] = cached
+                name = cached["name"]
+                if pid != os.getpid() and not any(
                     x in name.lower() for x in ("chrome", "soffice", "libreoffice")
                 ):
                     continue
-                identity = (info.pid, info.info["create_time"])
+                identity = (pid, cached["created"])
                 alive.add(identity)
                 first = identity not in self.processes
                 if first:
-                    self.processes[identity] = psutil.Process(info.pid)
+                    self.processes[identity] = psutil.Process(pid)
                 proc = self.processes[identity]
                 with proc.oneshot():
                     io = None
@@ -52,6 +103,8 @@ class TelemetryCollector:
                         {
                             "pid": proc.pid,
                             "name": name,
+                            "create_time": cached["created"],
+                            "metadata_age_seconds": max(0, sampled_at - cached["checked_at"]),
                             "runner": proc.pid == os.getpid(),
                             "cpu_percent": proc.cpu_percent(),
                             "rss_bytes": proc.memory_info().rss,
@@ -63,12 +116,17 @@ class TelemetryCollector:
             except (psutil.NoSuchProcess, psutil.AccessDenied):
                 continue
         self.processes = {identity: proc for identity, proc in self.processes.items() if identity in alive}
+        self.process_metadata = {
+            pid: metadata for pid, metadata in self.process_metadata.items() if pid in pids
+        }
         sample = {
             "kind": "os.sample",
             "timestamp": time.time(),
             "monotonic": time.monotonic(),
             "backend": self.mode,
             "source": "psutil",
+            "process_metadata_refresh_seconds": self.metadata_refresh_seconds,
+            "process_discovery": "PID list every sample; new PIDs classified immediately; stable metadata refreshed periodically; matched PID reuse checked each sample",
             "processes": rows,
             "scope": "runner and all matching app processes; includes unrelated app sessions",
             "cpu_first_sample_may_be_zero": True,
@@ -88,15 +146,19 @@ class TelemetryCollector:
                     )
                 }
                 sample["input_scope"] = "entire login session, cumulative; not attributable solely to agent"
-                import AppKit
-
-                foreground = AppKit.NSWorkspace.sharedWorkspace().frontmostApplication()
-                sample["foreground"] = {
-                    "pid": int(foreground.processIdentifier()),
-                    "name": str(foreground.localizedName()),
-                }
             except Exception as exc:
                 sample["input_unavailable"] = str(exc)
+            snapshot = self.foreground_snapshot
+            sample["foreground_source"] = "NSWorkspace.main_run_loop"
+            if snapshot is None or snapshot[1] is None:
+                sample["foreground_status"] = "unavailable"
+                sample["foreground_unavailable"] = snapshot[2] if snapshot else "Monitor not started"
+            else:
+                age = max(0, time.monotonic() - snapshot[0])
+                sample["foreground_age_seconds"] = age
+                sample["foreground_status"] = "observed" if age <= max(1, self.interval * 2) else "stale"
+                if sample["foreground_status"] == "observed":
+                    sample["foreground"] = dict(snapshot[1])
         return sample
 
     def _run(self):
@@ -112,6 +174,8 @@ class TelemetryCollector:
 
     def stop(self):
         self.stopped.set()
+        if self.foreground_task:
+            self.foreground_task.get_loop().call_soon_threadsafe(self.foreground_task.cancel)
         if self.thread:
             self.thread.join(timeout=5)
 

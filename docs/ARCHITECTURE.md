@@ -160,3 +160,16 @@ Those adapters are not included here. LangGraph routing follows its
 [StateGraph API](https://reference.langchain.com/python/langgraph/graph/state/StateGraph/add_conditional_edges).
 An observability backend can later ingest real signals using
 [OpenTelemetry](https://opentelemetry.io/docs/concepts/signals/); this MVP exports local JSONL.
+
+## Telemetry and persona review
+
+The [latest review](OPTIMIZATION_REVIEW.md) adds a main-loop foreground heartbeat with explicit
+freshness, live per-sample PID discovery/CPU/RSS/thread reads, and a five-second stable-metadata
+cache with recorded age and matched-PID reuse fencing. Nonmatching PID exec/reuse can take up
+to that TTL to reclassify. Independent input events and their original timestamps are unchanged.
+Frequent focus checks read app/document identity without extracting full editor text. Browser
+verification uses one fresh clipboard snapshot for both matching and evidence persistence.
+
+Persona defaults preserve legacy sessions. Optional configurable hold/typing distributions and
+independent serial holds support the explicitly in-sample human-05 profile; overlapping key
+holds remain unsupported. Larger entropy or closer fit to one person is not a universal score.

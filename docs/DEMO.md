@@ -64,8 +64,9 @@ core timings as a calibrated competition score. Raw human input/OS traces stay l
 
 Source, lockfile, tests, config, documentation and labelled simulation/native evidence are
 committed and pushed to [Levi3110/synthetic-human-agent](https://github.com/Levi3110/synthetic-human-agent).
-Visibility is **private**. Review it before changing visibility or inviting evaluators. The ignored
-`runs/` folders retain development checkpoints; selected native evidence is in `examples/native/`.
+The ignored `runs/` folders retain development checkpoints; selected native evidence is in
+`examples/native/`, with the latest aggregates and output files in
+[`examples/latest-demo-benchmark/`](../examples/latest-demo-benchmark/README.md).
 
 ```bash
 gh repo clone Levi3110/synthetic-human-agent
@@ -80,14 +81,8 @@ passed both Ubuntu/Python **3.11 and 3.14** jobs: 53 tests, lint and format chec
 also passed both jobs after adding the recording helpers and their lint/format checks.
 The recording/export helpers were additionally executed and verified on macOS.
 
-Place the repository URL and your separately recorded video URL in the submission. Evaluators
-need access to the private repository or a visibility change made by its owner. The original native example predates the Screen Recording grant; the new recording workflow
-and its local artifacts are documented above.
-
-## Suggested narration
-
-“The controller delegates task authority according to expertise. Browser and Office hand off
-directly with versioned data and a resume point. Workers return plans without taking authority.
-The runtime grants one desktop lease, checks each input's epoch/token, and verifies saved output.
-A shared persona controls context-dependent timing. Independent OS samples are kept separately
-from action logs. Unknown mutation outcomes are reconciled before retrying.”
+Place the repository URL and your separately hosted video URL in the submission. The video
+remains a local artifact and is not included with the source. The original native example
+predates the Screen Recording grant; the later recording workflow and its local artifacts
+are documented above. See the [latest benchmark](LATEST_DEMO_BENCHMARK.md) for the
+subsequent personalised demo, distinct from the older 190-second recorded video.

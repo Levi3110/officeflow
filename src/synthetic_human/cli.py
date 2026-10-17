@@ -245,6 +245,9 @@ def main():
     rubric.add_argument("--human", type=Path, required=True, help="Closed human run directory")
     rubric.add_argument("--core", type=Path, required=True, help="Fresh-process core benchmark JSON")
     rubric.add_argument("--output", type=Path, required=True, help="New aggregate report directory")
+    rubric.add_argument(
+        "--comparison-scope", choices=("observational", "personalization_training"), default="observational"
+    )
     comparison = sub.add_parser("compare", help="compare independently observed agent/human input streams")
     comparison.add_argument("--agent", type=Path, required=True)
     comparison.add_argument("--human", type=Path, required=True)
@@ -274,7 +277,7 @@ def main():
 
             if args.output.exists():
                 raise FileExistsError("Use a fresh evaluation output directory")
-            result = evaluate(args.agent, args.human, args.core)
+            result = evaluate(args.agent, args.human, args.core, comparison_scope=args.comparison_scope)
             save(result, args.output)
             print(
                 json.dumps(

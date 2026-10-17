@@ -76,6 +76,24 @@ def process_profile(data):
         previous = current
     return {
         **resources(data),
+        "foreground_status_counts": dict(
+            Counter(row.get("foreground_status", "legacy_unvalidated") for row in samples)
+        ),
+        "foreground_source_counts": dict(
+            Counter(row.get("foreground_source", "legacy_unvalidated") for row in samples)
+        ),
+        "process_metadata_refresh_seconds_counts": dict(
+            Counter(str(row.get("process_metadata_refresh_seconds", "legacy_unvalidated")) for row in samples)
+        ),
+        "max_process_metadata_age_seconds": max(
+            (
+                process["metadata_age_seconds"]
+                for row in samples
+                for process in row.get("processes", [])
+                if "metadata_age_seconds" in process
+            ),
+            default=None,
+        ),
         "collector_errors": errors,
         "sample_sources": dict(sources),
         "sample_backends": dict(backends),
@@ -157,7 +175,9 @@ def core_summary(report):
     }
 
 
-def evaluate(agent, human, core_path):
+def evaluate(agent, human, core_path, comparison_scope="observational"):
+    if comparison_scope not in ("observational", "personalization_training"):
+        raise ValueError("Unknown comparison scope")
     sources = {}
     for role, directory, names in (
         (
@@ -215,6 +235,8 @@ def evaluate(agent, human, core_path):
     for role, observed in observations.items():
         if recording_problems(observed) or observed["recording_roles"] != [role]:
             statuses["process_telemetry_authenticity"] = "incomplete_input_capture"
+    if comparison_scope == "personalization_training" and comparison["status"] == "descriptive_comparison":
+        statuses["human_entropy_timing"] = "in_sample_personalization_comparison"
     app_vectors = {role: app_features(sources[(role, "telemetry.jsonl")][1]) for role in ("agent", "human")}
     app_comparison = {
         key: {
@@ -235,6 +257,7 @@ def evaluate(agent, human, core_path):
         "kind": "four_criterion_evidence_benchmark",
         "created_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "native_verified": native,
+        "comparison_scope": comparison_scope,
         "agent_label": agent.name,
         "human_label": human.name,
         "dimensions": [
@@ -284,6 +307,9 @@ def evaluate(agent, human, core_path):
             "core": core_summary(json.loads(core_path.read_text())),
         },
         "limitations": [
+            "Human reference data was used to fit this persona. Comparison is in-sample training evidence, not held-out human evaluation or generalisation."
+            if comparison_scope == "personalization_training"
+            else "Observational comparison scope; parameter-fitting history must be documented separately if applicable.",
             "One selected agent trace and one participant/session. People differ in typing, editing, shortcuts, navigation and problem-solving; no universal human baseline or close-match claim follows.",
             "Independent sampler provenance is evidence of real measurements, not proof of human-like process patterns. Source metadata exposes generated input; no hardware-origin disguise is attempted.",
             "All matching app processes include unrelated sessions, and RSS may double-count shared memory. Foreground labels can be stale; they are excluded from dwell/completion conclusions. Process I/O may be unavailable; kernel/network traces are absent.",
@@ -312,6 +338,10 @@ def render(report):
         "# Four-criterion benchmark",
         "",
         f"Analysis: {report['created_at']}. Agent: `{report['agent_label']}`; human reference: `{report['human_label']}`.",
+        "",
+        "**In-sample personalisation:** this human reference was used to fit the persona. Lower distances are training fit, not independent human validation."
+        if report.get("comparison_scope") == "personalization_training"
+        else "Observational comparison; collection and parameter-fitting history must still be reviewed.",
         "",
         "All four criteria are measured below. Weights are not achieved scores. Resource Efficiency is Primary; Complexity is Secondary. Priority labels do not alter the 30/30/20/20 formula.",
         "",
@@ -356,7 +386,7 @@ def render(report):
     for role in ("agent", "human"):
         profile = profiles[role]
         lines += [
-            f"- {role.title()} source counts: `{json.dumps(profile['sample_sources'])}`; family sample presence: `{json.dumps(profile['family_sample_presence'])}`."
+            f"- {role.title()} source counts: `{json.dumps(profile['sample_sources'])}`; family sample presence: `{json.dumps(profile['family_sample_presence'])}`. Foreground statuses: `{json.dumps(profile['foreground_status_counts'])}`."
         ]
     lines += [
         f"- Agent observed input source groups: `{json.dumps(report['process_telemetry']['agent_observed_source_groups'])}`. Automation provenance is preserved.",

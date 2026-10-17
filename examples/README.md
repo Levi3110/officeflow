@@ -39,3 +39,12 @@ process telemetry, human timing/entropy, complexity and resources. It includes a
 a weights/status CSV and every trial from the new nine-run simulation-core batch. Read the
 [English report](../docs/FOUR_CRITERIA_BENCHMARK.md) for native/core distinctions, individual
 variability and why measured evidence does not yet provide calibrated competition grades.
+
+`optimization-review/` retains three newer native review attempts, both nine-pair sampler
+microbenchmarks, every core batch and the explicit human-05 training-fit provenance. Read the
+[review and stopping record](../docs/OPTIMIZATION_REVIEW.md) before interpreting improvements.
+
+`latest-demo-benchmark/` archives the subsequent presentation-demo run's aggregate four-criterion
+measurements, checklist, and GUI-produced files. Its human-05 comparison is in-sample
+personalisation. The [latest report](../docs/LATEST_DEMO_BENCHMARK.md) preserves limitations and
+makes explicit that the nine core trials came from the earlier optimisation review.

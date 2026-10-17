@@ -13,6 +13,10 @@ class Persona(BaseModel):
     characters_per_second: float = Field(default=7, gt=0)
     typo_probability: float = Field(default=0.018, ge=0, le=0.1)
     pause_scale: float = Field(default=1, ge=0)
+    typing_log_sigma: float = Field(default=0.24, ge=0.05, le=1.2)
+    key_hold_median_seconds: float = Field(default=0.055, gt=0, le=0.25)
+    key_hold_log_sigma: float = Field(default=0.22, ge=0.05, le=1.0)
+    independent_key_hold: bool = False
 
 
 class Settings(BaseModel):

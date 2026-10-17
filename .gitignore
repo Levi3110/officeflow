@@ -9,3 +9,9 @@ runs/
 .DS_Store
 dist/
 
+
+# Presentation slides and personal narration are kept outside the source project.
+**/PRESENTATION_SCRIPT.md
+**/presentation-script*.md
+**/presentation-speech*.txt
+*.pptx

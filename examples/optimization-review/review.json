@@ -1,0 +1,589 @@
+{
+  "kind": "optimization_review",
+  "comparison_scope": "personalization_training",
+  "weighted_score": null,
+  "planned_review_native_attempts": 3,
+  "native_runs": [
+    {
+      "label": "optimized-human05-native-01",
+      "seed": 17,
+      "capture_duration_seconds": 248.01342821121216,
+      "completed": true,
+      "desktop_checks_passed": 7,
+      "verified_actions": 22,
+      "handoffs": 5,
+      "coverage": {
+        "enabled": true,
+        "completed": true,
+        "sessions_started": 1,
+        "sessions_stopped": 1,
+        "lifecycle_errors": 0,
+        "outside_session_events": 0,
+        "incomplete_lines": 0,
+        "gaps": 0,
+        "errors": 0,
+        "dropped_events": 0,
+        "invalid_timestamps": 0
+      },
+      "distances": {
+        "inter_key_seconds": {
+          "ks": 0.15592006033182504,
+          "wasserstein": 0.05677523484889972
+        },
+        "key_hold_seconds": {
+          "ks": 0.14596092004048233,
+          "wasserstein": 0.012674604212411842
+        },
+        "idle_seconds": {
+          "ks": 0.9,
+          "wasserstein": 1.2563060626212972
+        },
+        "input_silence_seconds": {
+          "ks": 0.4,
+          "wasserstein": 0.5234743754088412
+        },
+        "pointer_pixels_per_second": {
+          "ks": 0.2484369236606092,
+          "wasserstein": 3087.847791001552
+        }
+      },
+      "agent_statistics": {
+        "inter_key_seconds": {
+          "count": 832,
+          "mean": 0.25170304276812555,
+          "median": 0.1842027085076552,
+          "p95": 0.6207370829652064,
+          "cv": 0.7585649757189881
+        },
+        "key_hold_seconds": {
+          "count": 849,
+          "mean": 0.09390490062668365,
+          "median": 0.08678845898248255,
+          "p95": 0.169584917020984,
+          "cv": 0.43143548638345486
+        },
+        "idle_seconds": {
+          "count": 1,
+          "mean": 2.0531828749808483,
+          "median": 2.0531828749808483,
+          "p95": 2.0531828749808483,
+          "cv": 0.0
+        },
+        "input_silence_seconds": {
+          "count": 4,
+          "mean": 3.69605047951336,
+          "median": 3.627285563008627,
+          "p95": 4.474947375012562,
+          "cv": 0.14646313180466203
+        },
+        "pointer_pixels_per_second": {
+          "count": 265,
+          "mean": 672.2510223058309,
+          "median": 652.0775186243753,
+          "p95": 1875.7698746450008,
+          "cv": 0.7980281979664734
+        }
+      },
+      "resource_profile": {
+        "sample_count": 473,
+        "sample_window_seconds": 247.64961004257202,
+        "statistics": {
+          "runner_cpu_percent": {
+            "count": 472,
+            "mean": 5.221398305084746,
+            "median": 5.1,
+            "p95": 6.9,
+            "cv": 0.2838688304664531,
+            "peak": 21.8
+          },
+          "runner_rss_mib": {
+            "count": 473,
+            "mean": 77.61515591966173,
+            "median": 68.015625,
+            "p95": 103.109375,
+            "cv": 0.20635302523326488,
+            "peak": 137.109375
+          },
+          "apps_cpu_percent": {
+            "count": 472,
+            "mean": 26.38262711864407,
+            "median": 22.4,
+            "p95": 54.1,
+            "cv": 0.591348693488894,
+            "peak": 170.0
+          },
+          "apps_rss_mib": {
+            "count": 473,
+            "mean": 6127.299848044398,
+            "median": 6213.984375,
+            "p95": 6424.171875,
+            "cv": 0.03899499272691727,
+            "peak": 6664.671875
+          }
+        },
+        "foreground_samples_diagnostic_only": {
+          "Code": 2,
+          "Google Chrome": 123,
+          "LibreOffice": 348
+        },
+        "limitations": [
+          "Runner means agent workflow plus observer on the agent side, but observer only on the human side.",
+          "App totals include unrelated Chrome/LibreOffice sessions and may double-count shared memory.",
+          "Initial per-process CPU samples are excluded; short spikes between samples remain unobserved.",
+          "Passive-only AppKit foreground sampling may be stale; foreground samples are not validated dwell time.",
+          "These are different capture windows, not an isolated efficiency experiment or a cost of human cognition."
+        ],
+        "foreground_status_counts": {
+          "observed": 473
+        },
+        "foreground_source_counts": {
+          "NSWorkspace.main_run_loop": 473
+        },
+        "process_metadata_refresh_seconds_counts": {
+          "legacy_unvalidated": 473
+        },
+        "max_process_metadata_age_seconds": null,
+        "collector_errors": 0,
+        "sample_sources": {
+          "psutil": 473
+        },
+        "sample_backends": {
+          "macos": 473
+        },
+        "family_sample_presence": {
+          "LibreOffice": 473,
+          "runner": 473,
+          "Chrome": 473
+        },
+        "sampling_interval_seconds": {
+          "count": 472,
+          "mean": 0.5246795173898444,
+          "median": 0.525376770994626,
+          "p95": 0.5279026669450104,
+          "cv": 0.010338081719739538
+        },
+        "app_threads_per_sample": {
+          "count": 473,
+          "mean": 1222.8076109936576,
+          "median": 1214,
+          "p95": 1241,
+          "cv": 0.013211081153769257
+        },
+        "process_rows": 26775,
+        "io_available_rows": 0,
+        "runner_cpu_seconds_estimate": 12.933918225151837,
+        "runner_cpu_estimate_covered_seconds": 247.64873220800655,
+        "cpu_estimate_method": "Right-endpoint sum(cpu_percent / 100 * elapsed sample interval), excluding first CPU observations; diagnostic estimate, not a hardware counter or energy measure."
+      },
+      "runtime_overhead_seconds": 11.856671839370392,
+      "provenance": {
+        "inputs.jsonl": {
+          "bytes": 474738,
+          "sha256": "b7a8ec00aa62826fe93c603e7091a7655d9ec53fb311f0ee0e27c7fd73296ce5"
+        },
+        "telemetry.jsonl": {
+          "bytes": 4847289,
+          "sha256": "d30c9bdbac556708622f659fa31d0f4682688640a4e27e48f873a2dc373634f0"
+        },
+        "metrics.json": {
+          "bytes": 4334,
+          "sha256": "16ea8fb4cd4b376b373e2ee59742014fb95a146bc02e539eb5f1a6314c00f6e4"
+        },
+        "settings.json": {
+          "bytes": 634,
+          "sha256": "6aa0c75ffee141f93ee278785b15bb717a7d784fab0367e0bc5933a1e553f3b4"
+        }
+      }
+    },
+    {
+      "label": "optimized-human05-native-02",
+      "seed": 101,
+      "capture_duration_seconds": 250.25474882125854,
+      "completed": true,
+      "desktop_checks_passed": 7,
+      "verified_actions": 22,
+      "handoffs": 5,
+      "coverage": {
+        "enabled": true,
+        "completed": true,
+        "sessions_started": 1,
+        "sessions_stopped": 1,
+        "lifecycle_errors": 0,
+        "outside_session_events": 0,
+        "incomplete_lines": 0,
+        "gaps": 0,
+        "errors": 0,
+        "dropped_events": 0,
+        "invalid_timestamps": 0
+      },
+      "distances": {
+        "inter_key_seconds": {
+          "ks": 0.1401313982027812,
+          "wasserstein": 0.04969629441961681
+        },
+        "key_hold_seconds": {
+          "ks": 0.1666412766119511,
+          "wasserstein": 0.014610456517576389
+        },
+        "idle_seconds": {
+          "ks": 0.6,
+          "wasserstein": 0.8595338667975738
+        },
+        "input_silence_seconds": {
+          "ks": 0.33333333333333337,
+          "wasserstein": 0.6108737443437956
+        },
+        "pointer_pixels_per_second": {
+          "ks": 0.36932207521492866,
+          "wasserstein": 3197.938823002393
+        }
+      },
+      "agent_statistics": {
+        "inter_key_seconds": {
+          "count": 829,
+          "mean": 0.24972816219417698,
+          "median": 0.17947879194980487,
+          "p95": 0.631618042010814,
+          "cv": 0.8036943644800587
+        },
+        "key_hold_seconds": {
+          "count": 847,
+          "mean": 0.09535935768662977,
+          "median": 0.08774316700873896,
+          "p95": 0.17253983300179243,
+          "cv": 0.4312924128613418
+        },
+        "idle_seconds": {
+          "count": 2,
+          "mean": 2.537116771010915,
+          "median": 2.537116771010915,
+          "p95": 2.71611987502547,
+          "cv": 0.07055375064318824
+        },
+        "input_silence_seconds": {
+          "count": 6,
+          "mean": 3.5359769443263454,
+          "median": 2.8120939584914595,
+          "p95": 5.723025583021808,
+          "cv": 0.3681640549156265
+        },
+        "pointer_pixels_per_second": {
+          "count": 194,
+          "mean": 603.5346858928987,
+          "median": 667.3306354858412,
+          "p95": 1034.6494635919987,
+          "cv": 0.5553156127229076
+        }
+      },
+      "resource_profile": {
+        "sample_count": 477,
+        "sample_window_seconds": 250.07380199432373,
+        "statistics": {
+          "runner_cpu_percent": {
+            "count": 476,
+            "mean": 5.360294117647059,
+            "median": 5.2,
+            "p95": 7.0,
+            "cv": 0.32191543011753543,
+            "peak": 34.5
+          },
+          "runner_rss_mib": {
+            "count": 477,
+            "mean": 96.15313810272536,
+            "median": 73.265625,
+            "p95": 138.640625,
+            "cv": 0.29760974119077754,
+            "peak": 139.140625
+          },
+          "apps_cpu_percent": {
+            "count": 476,
+            "mean": 20.788235294117648,
+            "median": 16.5,
+            "p95": 48.7,
+            "cv": 0.7839986745607557,
+            "peak": 161.5
+          },
+          "apps_rss_mib": {
+            "count": 477,
+            "mean": 6115.959578092243,
+            "median": 6152.21875,
+            "p95": 6466.015625,
+            "cv": 0.041137082317739986,
+            "peak": 6503.328125
+          }
+        },
+        "foreground_samples_diagnostic_only": {
+          "Google Chrome": 127,
+          "LibreOffice": 350
+        },
+        "limitations": [
+          "Runner means agent workflow plus observer on the agent side, but observer only on the human side.",
+          "App totals include unrelated Chrome/LibreOffice sessions and may double-count shared memory.",
+          "Initial per-process CPU samples are excluded; short spikes between samples remain unobserved.",
+          "Passive-only AppKit foreground sampling may be stale; foreground samples are not validated dwell time.",
+          "These are different capture windows, not an isolated efficiency experiment or a cost of human cognition."
+        ],
+        "foreground_status_counts": {
+          "observed": 477
+        },
+        "foreground_source_counts": {
+          "NSWorkspace.main_run_loop": 477
+        },
+        "process_metadata_refresh_seconds_counts": {
+          "legacy_unvalidated": 477
+        },
+        "max_process_metadata_age_seconds": null,
+        "collector_errors": 0,
+        "sample_sources": {
+          "psutil": 477
+        },
+        "sample_backends": {
+          "macos": 477
+        },
+        "family_sample_presence": {
+          "LibreOffice": 477,
+          "runner": 477,
+          "Chrome": 477
+        },
+        "sampling_interval_seconds": {
+          "count": 476,
+          "mean": 0.5253632675084489,
+          "median": 0.5255597709910944,
+          "p95": 0.5280631249770522,
+          "cv": 0.009269317258211068
+        },
+        "app_threads_per_sample": {
+          "count": 477,
+          "mean": 1204.5744234800839,
+          "median": 1200,
+          "p95": 1239,
+          "cv": 0.01372377844956624
+        },
+        "process_rows": 26662,
+        "io_available_rows": 0,
+        "runner_cpu_seconds_estimate": 13.403850855830076,
+        "runner_cpu_estimate_covered_seconds": 250.07291533402167,
+        "cpu_estimate_method": "Right-endpoint sum(cpu_percent / 100 * elapsed sample interval), excluding first CPU observations; diagnostic estimate, not a hardware counter or energy measure."
+      },
+      "runtime_overhead_seconds": 10.943967230676208,
+      "provenance": {
+        "inputs.jsonl": {
+          "bytes": 462132,
+          "sha256": "29c3bd7b87b014ee6be7934526661dbb49a37a01e23a56cd6bb6a975e77d617a"
+        },
+        "telemetry.jsonl": {
+          "bytes": 4830152,
+          "sha256": "8ec0f3bddf7985dcb6c6cd30da8f1ed056c4381c8070ab3c52efc1aa8be4f447"
+        },
+        "metrics.json": {
+          "bytes": 4361,
+          "sha256": "36ee9039775dfe7a05ce236dc06ebc4df47c6d0dde257c0e47b81007c74ed76c"
+        },
+        "settings.json": {
+          "bytes": 635,
+          "sha256": "9d7842308cf9eea5040d11d14c49578f6a66390db398169b3c849d4f14094767"
+        }
+      }
+    },
+    {
+      "label": "optimized-human05-native-03",
+      "seed": 17,
+      "capture_duration_seconds": 247.36534190177917,
+      "completed": true,
+      "desktop_checks_passed": 7,
+      "verified_actions": 22,
+      "handoffs": 5,
+      "coverage": {
+        "enabled": true,
+        "completed": true,
+        "sessions_started": 1,
+        "sessions_stopped": 1,
+        "lifecycle_errors": 0,
+        "outside_session_events": 0,
+        "incomplete_lines": 0,
+        "gaps": 0,
+        "errors": 0,
+        "dropped_events": 0,
+        "invalid_timestamps": 0
+      },
+      "distances": {
+        "inter_key_seconds": {
+          "ks": 0.15528374811463053,
+          "wasserstein": 0.056301683259337536
+        },
+        "key_hold_seconds": {
+          "ks": 0.14800403441689203,
+          "wasserstein": 0.012653612128724187
+        },
+        "idle_seconds": {
+          "ks": 0.9,
+          "wasserstein": 1.256961896206485
+        },
+        "input_silence_seconds": {
+          "ks": 0.4,
+          "wasserstein": 0.554667881509522
+        },
+        "pointer_pixels_per_second": {
+          "ks": 0.2956151053741327,
+          "wasserstein": 3159.272161848785
+        }
+      },
+      "agent_statistics": {
+        "inter_key_seconds": {
+          "count": 832,
+          "mean": 0.250947437501194,
+          "median": 0.1841086040076334,
+          "p95": 0.6181010829750448,
+          "cv": 0.7593058412926891
+        },
+        "key_hold_seconds": {
+          "count": 849,
+          "mean": 0.09374086793164643,
+          "median": 0.08657874999335036,
+          "p95": 0.17089958296855912,
+          "cv": 0.4323348833134104
+        },
+        "idle_seconds": {
+          "count": 1,
+          "mean": 2.0523630829993635,
+          "median": 2.0523630829993635,
+          "p95": 2.0523630829993635,
+          "cv": 0.0
+        },
+        "input_silence_seconds": {
+          "count": 4,
+          "mean": 3.6315829684899654,
+          "median": 3.628974061983172,
+          "p95": 4.2098985409829766,
+          "cv": 0.12393569374663099
+        },
+        "pointer_pixels_per_second": {
+          "count": 197,
+          "mean": 643.1448602849434,
+          "median": 667.7223173123413,
+          "p95": 1640.9915324787003,
+          "cv": 0.6647524715076457
+        }
+      },
+      "resource_profile": {
+        "sample_count": 483,
+        "sample_window_seconds": 247.08688592910767,
+        "statistics": {
+          "runner_cpu_percent": {
+            "count": 482,
+            "mean": 3.1543568464730294,
+            "median": 2.6,
+            "p95": 6.8,
+            "cv": 0.6153309143473495,
+            "peak": 19.4
+          },
+          "runner_rss_mib": {
+            "count": 483,
+            "mean": 81.57670160455487,
+            "median": 72.4375,
+            "p95": 119.453125,
+            "cv": 0.27986920654543873,
+            "peak": 136.328125
+          },
+          "apps_cpu_percent": {
+            "count": 482,
+            "mean": 19.773858921161825,
+            "median": 14.95,
+            "p95": 51.5,
+            "cv": 0.8469600157878441,
+            "peak": 114.1
+          },
+          "apps_rss_mib": {
+            "count": 483,
+            "mean": 6506.487609989648,
+            "median": 6532.234375,
+            "p95": 7176.15625,
+            "cv": 0.06207801313174916,
+            "peak": 7288.890625
+          }
+        },
+        "foreground_samples_diagnostic_only": {
+          "Code": 2,
+          "Google Chrome": 124,
+          "LibreOffice": 357
+        },
+        "limitations": [
+          "Runner means agent workflow plus observer on the agent side, but observer only on the human side.",
+          "App totals include unrelated Chrome/LibreOffice sessions and may double-count shared memory.",
+          "Initial per-process CPU samples are excluded; short spikes between samples remain unobserved.",
+          "Passive-only AppKit foreground sampling may be stale; foreground samples are not validated dwell time.",
+          "These are different capture windows, not an isolated efficiency experiment or a cost of human cognition."
+        ],
+        "foreground_status_counts": {
+          "observed": 483
+        },
+        "foreground_source_counts": {
+          "NSWorkspace.main_run_loop": 483
+        },
+        "process_metadata_refresh_seconds_counts": {
+          "5.0": 483
+        },
+        "max_process_metadata_age_seconds": 4.6987326250527985,
+        "collector_errors": 0,
+        "sample_sources": {
+          "psutil": 483
+        },
+        "sample_backends": {
+          "macos": 483
+        },
+        "family_sample_presence": {
+          "LibreOffice": 483,
+          "runner": 483,
+          "Chrome": 483
+        },
+        "sampling_interval_seconds": {
+          "count": 482,
+          "mean": 0.512620140475108,
+          "median": 0.5109525624720845,
+          "p95": 0.5336570829967968,
+          "cv": 0.01516593350916945
+        },
+        "app_threads_per_sample": {
+          "count": 483,
+          "mean": 1280.7701863354037,
+          "median": 1276,
+          "p95": 1304,
+          "cv": 0.009929418320141041
+        },
+        "process_rows": 28774,
+        "io_available_rows": 0,
+        "runner_cpu_seconds_estimate": 7.832397793472401,
+        "runner_cpu_estimate_covered_seconds": 247.08290770900203,
+        "cpu_estimate_method": "Right-endpoint sum(cpu_percent / 100 * elapsed sample interval), excluding first CPU observations; diagnostic estimate, not a hardware counter or energy measure."
+      },
+      "runtime_overhead_seconds": 10.784887382702436,
+      "provenance": {
+        "inputs.jsonl": {
+          "bytes": 463506,
+          "sha256": "fcf869800fd02c466e20711e4424ecdf51468f850273340a0d27d1fccf4f1801"
+        },
+        "telemetry.jsonl": {
+          "bytes": 7470128,
+          "sha256": "699ab059b4923ee0cb2a1b3709b1909275ad5b8ef3032832e482f7b3eff8f099"
+        },
+        "metrics.json": {
+          "bytes": 4335,
+          "sha256": "73e30c60ea5fcbff327706e935170f820a7828407cc84c62fb43e9a4582fd495"
+        },
+        "settings.json": {
+          "bytes": 634,
+          "sha256": "6aa0c75ffee141f93ee278785b15bb717a7d784fab0367e0bc5933a1e553f3b4"
+        }
+      }
+    }
+  ],
+  "limitations": [
+    "Human-05 fitted the persona; all reported comparisons to it are in-sample. Different agent seeds do not create held-out human participants.",
+    "These three new native review attempts do not include earlier historical development failures and do not establish a population success rate.",
+    "Native CPU is a sampled diagnostic estimate with uncontrolled background work and app sessions, not a controlled statistical or energy result. Runs 01/02 precede the collector metadata-cache change; run 03 includes it.",
+    "Core benchmark batches use the generic legacy persona in simulation, with real-time sleeps and the OS sampler excluded; they are not native throughput. Some intermediate batches overlapped native work. Final core/holdout batches followed GUI completion.",
+    "Metadata caching retains 0.5-second configured PID/CPU/RSS/thread sampling. A known nonmatching PID that execs or is reused without being absent between samples can take up to the 5-second metadata refresh to be reclassified; matched PID reuse is checked per sample.",
+    "Serial keyboard delivery cannot reproduce overlapping key holds; pauses, pointer sampling and process-pattern similarity remain limited."
+  ],
+  "review_completed_attempts": 3
+}

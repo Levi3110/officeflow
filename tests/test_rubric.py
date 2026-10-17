@@ -151,3 +151,10 @@ async def test_four_dimensions_keep_weights_and_never_promote_simulation(rig, tm
     assert not list(output.glob("*.jsonl"))
     with pytest.raises(FileExistsError):
         save(result, output)
+
+    fitted = evaluate(rig.directory, human, core, comparison_scope="personalization_training")
+    assert fitted["dimensions"][1]["status"] == "in_sample_personalization_comparison"
+    assert "Lower distances are training fit" in render(fitted)
+    assert fitted["weighted_score"] is None
+    with pytest.raises(ValueError, match="Unknown comparison scope"):
+        evaluate(rig.directory, human, core, comparison_scope="population_validated")

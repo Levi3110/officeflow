@@ -34,7 +34,8 @@ class ApplicationAdapters:
                 P(kind="key", value="escape"),
             ]
         if kind == "read_page":
-            return [P(kind="hotkey", value=[self.mod, "a"]), P(kind="hotkey", value=[self.mod, "c"])]
+            # Runtime verification performs one fresh GUI copy and validates the captured text.
+            return []
         if kind == "scroll":
             return [P(kind="scroll", value=data.get("amount", -4)), P(kind="pause", value="read")]
         if kind == "open_file":

@@ -11,6 +11,14 @@ this repository. Simulation validates orchestration and correctness; it cannot v
 | Complexity 20% | Browsing, link activation, scroll, cross-app workflow, cell/formula editing, report, missing-data handoff | Review successful live task completion and action diversity; inspect errors and artifacts |
 | Efficiency 20% | Runner/app CPU and RSS, action timing, model calls/tokens, completion status | Repeat identical scenarios and report medians/p95 plus outcome rates |
 
+## Latest optimization review
+
+The [optimization review](OPTIMIZATION_REVIEW.md) preserves pre/post results, three new native
+attempts and paired sampler benchmarks. An optional profile fits human-05; use
+`--comparison-scope personalization_training` when that reference also trained the persona.
+Lower in-sample distances do not establish generalisation. The generic profile and historical
+baseline evidence are retained. All grades remain uncalibrated, even after measurable improvements.
+
 ## Four-criterion benchmark
 
 Read [FOUR_CRITERIA_BENCHMARK.md](FOUR_CRITERIA_BENCHMARK.md) for the executed four-dimension

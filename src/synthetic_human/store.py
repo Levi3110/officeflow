@@ -8,6 +8,8 @@ from contextlib import contextmanager
 from pathlib import Path
 from uuid import uuid4
 
+_encode_event = json.JSONEncoder(ensure_ascii=False, separators=(",", ":")).encode
+
 
 class Store:
     def __init__(self, path: Path, readonly=False):
@@ -76,7 +78,7 @@ class Store:
         return identity
 
     def event(self, kind, body):
-        self._events.append((time.time(), kind, json.dumps(body, ensure_ascii=False, separators=(",", ":"))))
+        self._events.append((time.time(), kind, _encode_event(body)))
         high_frequency = kind in ("input.dispatched", "timing", "typing.plan")
         if not high_frequency or len(self._events) >= 64 or time.monotonic() - self._last_flush >= 0.25:
             self.flush_events()

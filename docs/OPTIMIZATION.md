@@ -84,3 +84,7 @@ The exact initial core source, including the same benchmark harness, is frozen i
 `examples/optimization/baseline-source.zip`. Extract it to a separate directory, set
 `PYTHONPATH` to that directory and run `python -m synthetic_human.benchmark --runs 9 --output ...`
 with the same environment/lockfile. Do not compare profiled runs to unprofiled trials.
+
+The subsequent [optimization review](OPTIMIZATION_REVIEW.md) measures the sampler separately,
+checks three additional native workflows and preserves the later core plateau. Its individual
+persona is fitted to human-05 and is explicitly distinct from this generic-core benchmark.
