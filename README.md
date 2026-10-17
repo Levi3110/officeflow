@@ -6,7 +6,7 @@ A Python MVP for **browsing a catalog, comparing three products, and creating a 
 and report**, with direct Browser/Office handoffs based on expertise. Authority management
 and desktop leases are enforced in code; one Desktop Executor emits all mouse and keyboard input.
 
-Source: [Levi3110/synthetic-human-agent](https://github.com/Levi3110/synthetic-human-agent).
+Source: [Levi3110/officeflow](https://github.com/Levi3110/officeflow).
 
 **Verified status:** the complete workflow has run through the actual **Google Chrome and
 LibreOffice Calc/Writer 26.8.1** interfaces: 22 verified actions, 5 handoffs, 20 cells and a

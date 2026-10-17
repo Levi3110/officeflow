@@ -63,23 +63,23 @@ core timings as a calibrated competition score. Raw human input/OS traces stay l
 ## GitHub handoff
 
 Source, lockfile, tests, config, documentation and labelled simulation/native evidence are
-committed and pushed to [Levi3110/synthetic-human-agent](https://github.com/Levi3110/synthetic-human-agent).
+committed and pushed to [Levi3110/officeflow](https://github.com/Levi3110/officeflow).
 The ignored `runs/` folders retain development checkpoints; selected native evidence is in
 `examples/native/`, with the latest aggregates and output files in
 [`examples/latest-demo-benchmark/`](../examples/latest-demo-benchmark/README.md).
 
 ```bash
-gh repo clone Levi3110/synthetic-human-agent
-cd synthetic-human-agent
+gh repo clone Levi3110/officeflow
+cd officeflow
 uv sync --locked --extra dev
 uv run pytest -q
 ```
 
-[CI run 39020181384](https://github.com/Levi3110/synthetic-human-agent/actions/runs/39020181384)
-passed both Ubuntu/Python **3.11 and 3.14** jobs: 53 tests, lint and format checks.
-[CI run 39021741456](https://github.com/Levi3110/synthetic-human-agent/actions/runs/39021741456)
-also passed both jobs after adding the recording helpers and their lint/format checks.
-The recording/export helpers were additionally executed and verified on macOS.
+The [Core verification workflow](https://github.com/Levi3110/officeflow/actions/workflows/test.yml)
+runs tests, lint and formatting checks on Ubuntu with Python **3.11 and 3.14**.
+The current suite contains **74 tests**. The GUI and recording/export helpers were
+additionally executed and verified locally on macOS. Linux CI checks the core workflow,
+not native macOS desktop control.
 
 Place the repository URL and your separately hosted video URL in the submission. The video
 remains a local artifact and is not included with the source. The original native example
