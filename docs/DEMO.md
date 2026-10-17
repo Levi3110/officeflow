@@ -25,22 +25,25 @@ Cmd+Shift+5 to record a new full run after enabling screen capture for the launc
 
 ## GitHub handoff
 
-Source, lockfile, tests, config, documentation, and a labelled sample bundle are ready to commit.
-The development run folders are ignored because they contain full local paths, screenshots and
-environment measurements. Add selected reviewed live evidence and a video link for submission.
+Source, lockfile, tests, config, documentation and labelled simulation/native evidence are
+committed and pushed to [Levi3110/synthetic-human-agent](https://github.com/Levi3110/synthetic-human-agent).
+Visibility is **private**. Review it before changing visibility or inviting evaluators. The ignored
+`runs/` folders retain development checkpoints; selected native evidence is in `examples/native/`.
 
 ```bash
-git init -b main
-git add .
-git commit -m "Implement synthetic human desktop agent MVP"
-gh repo create synthetic-human-agent --private --source=. --push
+gh repo clone Levi3110/synthetic-human-agent
+cd synthetic-human-agent
+uv sync --locked --extra dev
+uv run pytest -q
 ```
 
-Choose visibility according to the submission rules, then place the resulting repository URL
-and video URL in your submission. The project repository is
-[Levi3110/synthetic-human-agent](https://github.com/Levi3110/synthetic-human-agent), created
-with **private** visibility. Review it before changing visibility or inviting evaluators.
-Remote checks are listed under [GitHub Actions](https://github.com/Levi3110/synthetic-human-agent/actions).
+[CI run 39020181384](https://github.com/Levi3110/synthetic-human-agent/actions/runs/39020181384)
+passed both Ubuntu/Python **3.11 and 3.14** jobs: 53 tests, lint and format checks. The final
+follow-up changes only document this result and do not alter tested source code.
+
+Place the repository URL and your separately recorded video URL in the submission. Evaluators
+need access to the private repository or a visibility change made by its owner. No video was
+recorded during this task because Screen Recording remained unavailable.
 
 ## Suggested narration
 
