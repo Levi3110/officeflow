@@ -8,7 +8,7 @@ from collections import Counter
 from xml.etree.ElementTree import ParseError
 from zipfile import BadZipFile
 
-from .evaluation import read_inputs
+from .evaluation import read_inputs, recording_problems
 from .models import Product
 from .store import Store
 from .workers import DocumentWorker, Verifier
@@ -66,10 +66,7 @@ def assess(directory):
     observed = read_inputs(directory / "inputs.jsonl") if (directory / "inputs.jsonl").exists() else None
     coverage = observed["coverage"] if observed else None
     input_complete = bool(
-        coverage
-        and observed["recording_roles"] == ["agent"]
-        and coverage["enabled"]
-        and not any(coverage[key] for key in ("gaps", "errors", "dropped_events", "invalid_timestamps"))
+        coverage and observed["recording_roles"] == ["agent"] and not recording_problems(observed)
     )
     live_completed = mode == "macos" and verification["passed"] and bool(action_counts["write_document"])
     cv = (

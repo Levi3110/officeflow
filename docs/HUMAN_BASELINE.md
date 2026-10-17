@@ -44,6 +44,8 @@ sau Ctrl+C; đó không phải mất dữ liệu.
 Đầu ra: `runs/human-01/inputs.jsonl` và `telemetry.jsonl`. Mỗi lượt cần thư mục mới (`human-02`, ...).
 Công cụ thu không tự kiểm tra nội dung file bạn làm; hãy kiểm tra đúng dữ liệu/công thức/báo cáo
 trước khi sử dụng lượt đó làm baseline. Lượt lỗi vẫn cần ghi nhận, không chỉ giữ các lượt đẹp.
+Dừng recorder ngay sau khi hoàn tất, **trước** khi gõ lệnh compare hoặc đọc kết quả. Mốc stop
+đóng file là điều kiện kỹ thuật; nó không tự chứng minh cả file chỉ chứa đúng nhiệm vụ.
 
 ## 4. So sánh với lượt agent đã quay
 
@@ -57,7 +59,9 @@ uv run sha compare --agent runs/recorded-native-demo-final/inputs.jsonl --human 
 Công cụ so sánh median/p95 và KS/Wasserstein của khoảng gõ, giữ phím, idle và tốc độ chuột.
 Khoảng cách nhỏ hơn nghĩa là các phân bố gần hơn; không có ngưỡng tự động kết luận “giống người”.
 Ít nhất 30 khoảng gõ hợp lệ ở mỗi bên và coverage không có gap/drop/error là điều kiện tối thiểu
-của công cụ, không phải bảo đảm chất lượng thống kê. `insufficient_evidence` nghĩa là chưa đủ
+của công cụ, không phải bảo đảm chất lượng thống kê. Hai phiên phải có đủ start/stop và
+`coverage.completed = true`; phiên đang ghi, JSON dở dang hoặc lifecycle sai sẽ bị chặn, với
+lý do trong `insufficient_evidence_reasons`. `insufficient_evidence` nghĩa là chưa đủ
 bằng chứng. Trường `weighted_score` để null; công cụ không tự chấm rubric 30/30/20/20.
 
 Bắt đầu với một lượt để kiểm tra quy trình. Muốn đánh giá đáng tin hơn, thu nhiều lượt/người
@@ -65,3 +69,10 @@ Bắt đầu với một lượt để kiểm tra quy trình. Muốn đánh giá
 để chỉnh persona khỏi các lượt kiểm tra cuối. Đây là gợi ý thu ban đầu, không phải cỡ mẫu đã được
 chứng minh đủ. Telemetry CPU/RAM được lưu nhưng lệnh compare hiện chỉ so sánh các đặc trưng input;
 đánh giá tài nguyên và độ đúng đầu ra cần làm riêng. Mẫu này chỉ đại diện cho công việc đã thu.
+
+`idle_seconds` là chỉ số cũ của khoảng giữa các phím, bị reset bởi shortcut. Nó bằng 0 không
+có nghĩa là không nghỉ. Dùng thêm `input_silence_seconds` cho khoảng trống trên 2 giây giữa
+bất kỳ input nào; chỉ số này không biết bạn đang đọc, suy nghĩ hay làm việc ngoài nhiệm vụ.
+`corrections` đếm Backspace/Delete kể cả autorepeat; `nonrepeat_corrections` loại autorepeat,
+nhưng vẫn gồm sửa nội dung có chủ đích. Không dùng các số này như số lỗi gõ. Vận tốc chuột
+hiện tính theo từng event, chưa resample; chênh lệch tần suất lấy mẫu có thể làm lệch mean/p95.

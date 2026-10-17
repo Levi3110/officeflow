@@ -47,7 +47,10 @@ session remains global and is not automatically attributable solely to the agent
 
 `compare` provides descriptive KS and Wasserstein distances, sample counts and medians/p95;
 temporally correlated inputs do not justify naive independence-based p-values. Inter-key intervals
-up to 2 seconds describe active typing; longer gaps are reported separately as idle. Modifier
+up to 2 seconds describe active typing; longer gaps between unmodified keys are reported
+separately as legacy `idle_seconds`. Shortcuts reset that sequence; it does not measure every
+reading/planning pause. `input_silence_seconds` additionally reports gaps over 2 seconds between
+any observed input events inside a session, without inferring their purpose. Modifier
 shortcuts and autorepeats are excluded from active typing intervals. At least 30 intervals in
 each cohort are required for the comparison status, not a claim of statistical power or authenticity.
 For high-confidence conclusions, collect multiple whole sessions from multiple users and evaluate
@@ -62,3 +65,15 @@ fixture lifecycle overhead and should not be interpreted as pure task time.
 The weighted total may be computed only after the evaluator defines calibrated 0–100 scores
 for all four dimensions: `0.30*A + 0.30*H + 0.20*C + 0.20*R`. This project does not auto-generate
 an authenticity percentage from command logs or random delays.
+
+A completed start/stop lifecycle is required before comparison. Active captures, truncated JSON,
+misordered lifecycle records or events outside a session return `insufficient_evidence` with
+explicit reasons and null distances. Previously, enough intervals in a still-active capture could
+receive `descriptive_comparison`; the lifecycle gate corrects that false acceptance. Resumed
+recordings with separately closed sessions remain supported.
+
+A technically complete stream can still contain off-task activity. End manual capture before
+invoking compare or reading its output. Correction events are Backspace/Delete actions, not
+proven typos; autorepeats are counted separately. Event-wise pointer velocity is sensitive to
+sampling cadence, so raw movement counts or mean speed should not be directly fitted between
+a physical mouse and a low-frequency generated path without matched sampling/gesture analysis.

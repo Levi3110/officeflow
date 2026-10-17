@@ -10,7 +10,7 @@ Mã nguồn: [GitHub — Levi3110/synthetic-human-agent](https://github.com/Levi
 **Trạng thái bàn giao:** đã chạy thành công workflow qua GUI thật trên **Google Chrome +
 LibreOffice Calc/Writer 26.8.1**, với 22 hành động xác minh, 5 handoff, 20 ô và báo cáo đúng
 nguồn. Checklist hoạt động đạt **7/7**; có telemetry input độc lập, 4 lỗi gõ được sửa và
-4 lần cuộn xác minh bằng AX. **53 test đạt**. Xem [bằng chứng native](examples/native/README.md).
+4 lần cuộn xác minh bằng AX. **58 test đạt**. Xem [bằng chứng native](examples/native/README.md).
 Đây là MVP theo kịch bản catalog cục bộ, chưa hỗ trợ mọi yêu cầu văn phòng bằng ngôn ngữ
 tự nhiên. Chưa có baseline người thật để chấm authenticity. Screen Recording đã được cấp và kiểm tra
 bằng ảnh thật. Đã quay video GUI thật **3 phút 10 giây, 1080p**; bản MP4 nằm tại
@@ -204,7 +204,9 @@ trong [báo cáo tối ưu](docs/OPTIMIZATION.md). Không diễn giải tốc đ
 đồng thời và làm nhiễu baseline. Hãy tự thực hiện cùng workflow trong thời gian ghi. Collector
 ghi metadata toàn phiên đăng nhập, không lưu ký tự/key code. `compare` báo KS/Wasserstein cho
 khoảng gõ, giữ phím, idle và tốc độ chuột; không tự cho điểm theo rubric. Thiếu quyền, ít hơn
-30 khoảng gõ, sai nhãn agent/human hoặc có khoảng mất dữ liệu sẽ báo `insufficient_evidence`.
+30 khoảng gõ, sai nhãn agent/human, phiên chưa có mốc kết thúc hoặc có khoảng mất dữ liệu
+sẽ báo `insufficient_evidence`. `input_silence_seconds` đo khoảng không có bất kỳ input nào
+trên 2 giây; `idle_seconds` cũ chỉ đo khoảng giữa phím gõ và bị reset bởi phím tắt.
 
 Trace tần suất cao được batch tối đa 64 event, flush ở ranh giới action/checkpoint và khi đóng.
 Timestamp được lấy khi sự kiện xảy ra. Crash cứng có thể mất phần trace còn buffer; action
