@@ -1,0 +1,62 @@
+# Evaluation protocol
+
+The assignment weights are **Telemetry Authenticity 30%, Human Entropy & Timing 30%, Complexity
+of Action 20%, Resource Efficiency 20%**. They are evaluation weights, not scores achieved by
+this repository. Simulation validates orchestration and correctness; it cannot validate authenticity.
+
+| Criterion | Evidence implemented | Required evaluation |
+| --- | --- | --- |
+| Authenticity 30% | Independent process CPU/RSS/threads; I/O if supported; live session counters and passive input-event metadata; file/source evidence | Run real applications and compare OS measurements with consented human sessions |
+| Entropy/timing 30% | Shared persisted persona; variable key holds; word-chunk pauses; corrected adjacent-key typos; curved mouse paths; scroll bursts | Compare measured inter-event distributions, burst/idle patterns and app dwell times against humans |
+| Complexity 20% | Browsing, link activation, scroll, cross-app workflow, cell/formula editing, report, missing-data handoff | Review successful live task completion and action diversity; inspect errors and artifacts |
+| Efficiency 20% | Runner/app CPU and RSS, action timing, model calls/tokens, completion status | Repeat identical scenarios and report medians/p95 plus outcome rates |
+
+## Reproducible comparison
+
+1. Use the same machine, app versions, catalog, window layout and initial documents for all runs.
+2. Record at least several human runs and several agent runs; document sample counts. Reserve
+   separate runs for tuning and evaluation. Avoid recording agent activity while a human uses
+   other Chrome windows because process/session counters are shared.
+3. Keep the same OS measurement method and sample cadence for both cohorts. The new
+   `inputs.jsonl` recorder uses a passive macOS event tap for independent timestamps, key holds
+   and pointer/scroll metadata. Use `sha capture-human` for the manual cohort and `sha compare`
+   for empirical distances. The action audit remains dispatch timing and is kept separate.
+4. Check correctness first: all products, prices, warranties, source evidence, formulas and
+   calculated values, and report consistency must pass. Failed sessions still count in the
+   completion-rate denominator.
+5. Compare empirical distributions of typing/idle intervals, correction frequency, wheel bursts,
+   app dwell time, CPU/RSS and task duration. Use KS/Wasserstein or another predeclared statistic;
+   preserve units and avoid treating higher entropy as automatically better.
+6. Report task success rate and uncertainty intervals along with timing/resource medians and
+   p95. A single successful demo is evidence of functionality, not a population benchmark.
+
+`metrics.json` reports requested-onset interval coefficient of variation and Shannon
+entropy with 25 ms bins. These help catch constant timing, but do not measure actual hardware
+input timing or similarity to humans. Simulation performs no real-time sleep, so its elapsed
+timing is deliberately close to zero. `real_desktop_verified` stays false for simulation runs.
+
+The passive recorder requires Input Monitoring and has now run successfully on the native
+desktop; see `examples/native/`. Missing access creates a status record, never fabricated input
+events. Its bounded queue, tap disablement, parse errors and dropped events are reported;
+comparison refuses to mark insufficient/partial streams as a sufficient baseline. Native timestamps
+are used for intervals rather than callback arrival time. Recording-role labels distinguish agent
+and manual sessions. Actual source/target PIDs are retained where macOS supplies them, but the
+session remains global and is not automatically attributable solely to the agent.
+
+`compare` provides descriptive KS and Wasserstein distances, sample counts and medians/p95;
+temporally correlated inputs do not justify naive independence-based p-values. Inter-key intervals
+up to 2 seconds describe active typing; longer gaps are reported separately as idle. Modifier
+shortcuts and autorepeats are excluded from active typing intervals. At least 30 intervals in
+each cohort are required for the comparison status, not a claim of statistical power or authenticity.
+For high-confidence conclusions, collect multiple whole sessions from multiple users and evaluate
+on held-out sessions. Do not tune toward maximal random entropy: match observed context instead.
+
+CPU percentages can exceed 100% across cores/processes. RSS across processes can double count
+shared memory; `runner_peak_*` isolates the Python process. The first `cpu_percent` sample can
+be zero. App totals include existing Chrome/LibreOffice sessions. On macOS process I/O may be
+null; no replacement values are invented. The first/last OS sample times include collector and
+fixture lifecycle overhead and should not be interpreted as pure task time.
+
+The weighted total may be computed only after the evaluator defines calibrated 0–100 scores
+for all four dimensions: `0.30*A + 0.30*H + 0.20*C + 0.20*R`. This project does not auto-generate
+an authenticity percentage from command logs or random delays.

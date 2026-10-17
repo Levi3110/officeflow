@@ -1,0 +1,8 @@
+Product details: Vega
+Price: USD 145.00
+
+Product information. Fictional evaluation data.
+Warranty: 36 months
+
+Back to catalog
+Source: local Synthetic Human Agent demo fixture.

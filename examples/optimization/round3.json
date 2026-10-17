@@ -1,0 +1,177 @@
+{
+  "kind": "simulation.core.benchmark",
+  "platform": "macOS-26.4-arm64-arm-64bit-Mach-O",
+  "python": "3.14.6",
+  "runs": [
+    {
+      "seed": 17,
+      "status": "completed",
+      "import_seconds": 0.20118691603420302,
+      "workflow_seconds": 0.06382666702847928,
+      "workflow_cpu_seconds": 0.04755200000000001,
+      "export_seconds": 0.007666040968615562,
+      "maxrss_bytes": 93847552,
+      "input_dispatches": 917,
+      "actions": 22,
+      "audit_events": 1925,
+      "audit_bytes": 507518,
+      "database_bytes": 548864
+    },
+    {
+      "seed": 30,
+      "status": "completed",
+      "import_seconds": 0.1824260000139475,
+      "workflow_seconds": 0.06269658397650346,
+      "workflow_cpu_seconds": 0.04754100000000003,
+      "export_seconds": 0.005002916033845395,
+      "maxrss_bytes": 94027776,
+      "input_dispatches": 921,
+      "actions": 22,
+      "audit_events": 1932,
+      "audit_bytes": 509054,
+      "database_bytes": 552960
+    },
+    {
+      "seed": 43,
+      "status": "completed",
+      "import_seconds": 0.18144675000803545,
+      "workflow_seconds": 0.06284845800837502,
+      "workflow_cpu_seconds": 0.047459999999999974,
+      "export_seconds": 0.007902083976659924,
+      "maxrss_bytes": 93978624,
+      "input_dispatches": 922,
+      "actions": 22,
+      "audit_events": 1933,
+      "audit_bytes": 509360,
+      "database_bytes": 552960
+    },
+    {
+      "seed": 56,
+      "status": "completed",
+      "import_seconds": 0.18431520799640566,
+      "workflow_seconds": 0.06326374999480322,
+      "workflow_cpu_seconds": 0.04814199999999999,
+      "export_seconds": 0.008046041999477893,
+      "maxrss_bytes": 93929472,
+      "input_dispatches": 913,
+      "actions": 22,
+      "audit_events": 1918,
+      "audit_bytes": 506219,
+      "database_bytes": 548864
+    },
+    {
+      "seed": 69,
+      "status": "completed",
+      "import_seconds": 0.18209158402169123,
+      "workflow_seconds": 0.06288654200034216,
+      "workflow_cpu_seconds": 0.047708,
+      "export_seconds": 0.008102875028271228,
+      "maxrss_bytes": 93945856,
+      "input_dispatches": 910,
+      "actions": 22,
+      "audit_events": 1915,
+      "audit_bytes": 504943,
+      "database_bytes": 544768
+    },
+    {
+      "seed": 82,
+      "status": "completed",
+      "import_seconds": 0.1860992910224013,
+      "workflow_seconds": 0.06336024997290224,
+      "workflow_cpu_seconds": 0.04833800000000002,
+      "export_seconds": 0.00975800002925098,
+      "maxrss_bytes": 94044160,
+      "input_dispatches": 906,
+      "actions": 22,
+      "audit_events": 1907,
+      "audit_bytes": 503017,
+      "database_bytes": 544768
+    },
+    {
+      "seed": 95,
+      "status": "completed",
+      "import_seconds": 0.18548425001790747,
+      "workflow_seconds": 0.06582283298484981,
+      "workflow_cpu_seconds": 0.049735,
+      "export_seconds": 0.008103666012175381,
+      "maxrss_bytes": 93913088,
+      "input_dispatches": 916,
+      "actions": 22,
+      "audit_events": 1924,
+      "audit_bytes": 507189,
+      "database_bytes": 548864
+    },
+    {
+      "seed": 108,
+      "status": "completed",
+      "import_seconds": 0.18291299999691546,
+      "workflow_seconds": 0.06706991704413667,
+      "workflow_cpu_seconds": 0.049536000000000024,
+      "export_seconds": 0.007205875008367002,
+      "maxrss_bytes": 93962240,
+      "input_dispatches": 916,
+      "actions": 22,
+      "audit_events": 1925,
+      "audit_bytes": 507441,
+      "database_bytes": 548864
+    },
+    {
+      "seed": 121,
+      "status": "completed",
+      "import_seconds": 0.18284733302425593,
+      "workflow_seconds": 0.06686675001401454,
+      "workflow_cpu_seconds": 0.049758000000000024,
+      "export_seconds": 0.007931416970677674,
+      "maxrss_bytes": 94011392,
+      "input_dispatches": 916,
+      "actions": 22,
+      "audit_events": 1924,
+      "audit_bytes": 506769,
+      "database_bytes": 548864
+    }
+  ],
+  "success_rate": 1.0,
+  "summary": {
+    "import_seconds": {
+      "median": 0.18291299999691546,
+      "p95": 0.19515186602948234
+    },
+    "workflow_seconds": {
+      "median": 0.06336024997290224,
+      "p95": 0.06698865023208782
+    },
+    "workflow_cpu_seconds": {
+      "median": 0.04814199999999999,
+      "p95": 0.04974880000000002
+    },
+    "export_seconds": {
+      "median": 0.007931416970677674,
+      "p95": 0.00909626642242074
+    },
+    "maxrss_bytes": {
+      "median": 93962240,
+      "p95": 94037606.4
+    },
+    "audit_events": {
+      "median": 1924,
+      "p95": 1932.6
+    },
+    "audit_bytes": {
+      "median": 507189,
+      "p95": 509237.6
+    },
+    "database_bytes": {
+      "median": 548864,
+      "p95": 552960.0
+    },
+    "input_dispatches": {
+      "median": 916,
+      "p95": 921.6
+    },
+    "actions": {
+      "median": 22,
+      "p95": 22.0
+    }
+  },
+  "note": "Fresh-process simulation; no behavioural realtime sleeps or live authenticity score. App collector excluded to isolate core costs."
+}

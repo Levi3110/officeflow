@@ -1,0 +1,8 @@
+Product details: Lyra
+Price: USD 95.00
+
+Product information. Fictional evaluation data.
+Warranty: 12 months
+
+Back to catalog
+Source: local Synthetic Human Agent demo fixture.

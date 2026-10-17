@@ -1,0 +1,116 @@
+{
+  "assessment": "requested_activity_checklist",
+  "backend": "simulation",
+  "policy_checks_passed": 7,
+  "desktop_checks_passed": 0,
+  "criteria_count": 7,
+  "criteria": [
+    {
+      "criterion": "browsing_websites",
+      "policy_check": "pass",
+      "desktop_check": "not_verified",
+      "evidence": {
+        "navigation_actions": 4,
+        "page_reads": 4
+      },
+      "limitation": "Demo is a local catalog; arbitrary websites/search are not evaluated."
+    },
+    {
+      "criterion": "scrolling",
+      "policy_check": "pass",
+      "desktop_check": "not_verified",
+      "evidence": {
+        "scroll_actions": 4,
+        "wheel_bursts_dispatched": 9,
+        "session_scroll_events_observed": 0
+      },
+      "limitation": "Scroll dispatch and session input do not independently prove viewport displacement."
+    },
+    {
+      "criterion": "clicking_links",
+      "policy_check": "pass",
+      "desktop_check": "not_verified",
+      "evidence": {
+        "mouse_link_activations": 3,
+        "keyboard_link_activations": 0
+      },
+      "limitation": "Keyboard fallback is reported separately and does not satisfy the mouse-click criterion."
+    },
+    {
+      "criterion": "interacting_with_applications",
+      "policy_check": "pass",
+      "desktop_check": "not_verified",
+      "evidence": {
+        "opened_files": 2,
+        "row_edits": 4,
+        "document_edits": 1,
+        "file_verification": {
+          "passed": true,
+          "errors": [],
+          "checked": [
+            "source evidence",
+            "cell values",
+            "formulas",
+            "cached calculation",
+            "report consistency"
+          ]
+        }
+      },
+      "limitation": null
+    },
+    {
+      "criterion": "contextual_pauses",
+      "policy_check": "pass",
+      "desktop_check": "not_verified",
+      "evidence": {
+        "behaviour.plan": {
+          "count": 22,
+          "requested_seconds": 4.423232415978966,
+          "elapsed_seconds": 1.458043698221445e-06
+        },
+        "behaviour.switch": {
+          "count": 2,
+          "requested_seconds": 0.8093724467690775,
+          "elapsed_seconds": 2.0902371034026146e-07
+        },
+        "behaviour.scroll": {
+          "count": 5,
+          "requested_seconds": 0.9798993736971134,
+          "elapsed_seconds": 1.66997779160738e-07
+        },
+        "behaviour.read": {
+          "count": 8,
+          "requested_seconds": 14.052125476038725,
+          "elapsed_seconds": 3.7514837458729744e-07
+        }
+      },
+      "limitation": "Context-specific pauses can be checked without a baseline; human similarity remains unmeasured."
+    },
+    {
+      "criterion": "occasional_corrected_typos",
+      "policy_check": "pass",
+      "desktop_check": "not_verified",
+      "evidence": {
+        "typo_notice_count": 6,
+        "final_content_correct": true,
+        "session_corrections_observed": 0
+      },
+      "limitation": "Do not force a typo in every session. Session input may include unrelated user activity."
+    },
+    {
+      "criterion": "varied_delays",
+      "policy_check": "pass",
+      "desktop_check": "not_verified",
+      "evidence": {
+        "requested_interval_samples": 804,
+        "unique_millisecond_intervals": 198,
+        "requested_interval_cv": 0.6930712067648259,
+        "observed_inter_key_statistics": null
+      },
+      "limitation": "Nonconstant timing is a capability check, not a measure of human similarity."
+    }
+  ],
+  "input_coverage": null,
+  "authenticity_score": null,
+  "note": "Checklist evidence only. Simulation passes are not GUI passes or a competition grade. Human-likeness requires empirical baseline evaluation."
+}

@@ -1,0 +1,8 @@
+Product details: Orion
+Price: USD 120.00
+
+Product information. Fictional evaluation data.
+Warranty: 24 months
+
+Back to catalog
+Source: local Synthetic Human Agent demo fixture.

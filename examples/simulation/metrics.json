@@ -1,0 +1,70 @@
+{
+  "actions_by_status": {
+    "done": 22
+  },
+  "handoffs": 5,
+  "verified_action_types": {
+    "navigate": 4,
+    "scroll": 4,
+    "read_page": 4,
+    "follow_link": 3,
+    "open_file": 2,
+    "set_cells": 4,
+    "write_document": 1
+  },
+  "semantic_units_by_action": {
+    "navigate": 4,
+    "scroll": 4,
+    "read_page": 4,
+    "follow_link": 3,
+    "open_file": 2,
+    "set_cells": 20,
+    "write_document": 1
+  },
+  "verified_cell_edits": 20,
+  "gui_save_count": 5,
+  "input_dispatch_count": 917,
+  "typing_requested_interval_cv": 0.6930712067648259,
+  "typing_requested_entropy_bits_25ms_bins": 2.8287150442271702,
+  "typing_timing_note": "Requested onset intervals (legacy runs: post-key gaps); independent OS input observations are separate evidence.",
+  "timing_seconds": {
+    "behaviour.plan": 1.458043698221445e-06,
+    "behaviour.switch": 2.0902371034026146e-07,
+    "behaviour.key_hold": 0,
+    "behaviour.typing": 2.6897992938756943e-05,
+    "application_wait_and_verification": 0.0028157047345303,
+    "runtime_overhead": 0.04248956509400159,
+    "behaviour.scroll": 1.66997779160738e-07,
+    "behaviour.read": 3.7514837458729744e-07,
+    "behaviour.pointer": 5.390029400587082e-07,
+    "behaviour.typo_notice": 2.0692823454737663e-07
+  },
+  "model_calls": 0,
+  "model_input_tokens": 0,
+  "model_output_tokens": 0,
+  "os_samples": 3,
+  "telemetry_incomplete_lines": 0,
+  "peak_combined_app_rss_bytes": 4847419392,
+  "peak_combined_cpu_percent": 22.5,
+  "runner_peak_rss_bytes": 95272960,
+  "runner_peak_cpu_percent": 12.7,
+  "evaluation_note": "Measured diagnostics, not a benchmark authenticity score.",
+  "backend": "simulation",
+  "outcome": {
+    "route": "done",
+    "status": "completed",
+    "verification": {
+      "passed": true,
+      "errors": [],
+      "checked": [
+        "source evidence",
+        "cell values",
+        "formulas",
+        "cached calculation",
+        "report consistency"
+      ]
+    }
+  },
+  "real_desktop_verified": false,
+  "simulation_artifacts": true
+}

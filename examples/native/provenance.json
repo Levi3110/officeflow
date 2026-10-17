@@ -1,0 +1,17 @@
+{
+  "source_event_counts": {
+    "0": {
+      "move": 3
+    },
+    "89450": {
+      "key_down": 896,
+      "key_up": 896,
+      "move": 193,
+      "scroll": 10,
+      "mouse_down": 3,
+      "mouse_up": 3
+    }
+  },
+  "contains_characters_or_raw_key_codes": false,
+  "scope": "Login session; source PID is reported by CGEvent, not inferred from dispatch logs."
+}

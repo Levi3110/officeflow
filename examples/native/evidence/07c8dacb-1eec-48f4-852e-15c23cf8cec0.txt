@@ -1,0 +1,16 @@
+Demo Product Catalog
+Fictional products, USD. Tax assumption: 8%.
+
+Orion
+Price: USD 120.00
+
+Details Orion
+Lyra
+Price: USD 95.00
+
+Details Lyra
+Vega
+Price: USD 145.00
+
+Details Vega
+Source: local Synthetic Human Agent demo fixture.

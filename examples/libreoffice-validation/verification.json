@@ -1,0 +1,23 @@
+{
+  "libreoffice_version": "26.8.1.1",
+  "validation_mode": "headless_engine_roundtrip",
+  "gui_automation_verified": false,
+  "empty_templates_opened": true,
+  "spreadsheet_cells_checked": 20,
+  "cell_errors": [],
+  "formula_results": [
+    {
+      "value": "129.6",
+      "formula": "of:=[.B2]*1.08"
+    },
+    {
+      "value": "102.6",
+      "formula": "of:=[.B3]*1.08"
+    },
+    {
+      "value": "156.6",
+      "formula": "of:=[.B4]*1.08"
+    }
+  ],
+  "report_text_preserved": true
+}

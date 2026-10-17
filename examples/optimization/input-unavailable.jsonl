@@ -1,0 +1,1 @@
+{"kind": "recorder.status", "timestamp": 1792212868.0406241, "recording_role": "agent", "enabled": false, "reason": "Input Monitoring permission is missing", "dropped_events": 0, "source": "CGEventTap.listenOnly", "scope": "entire login session; not solely attributable to agent", "contains_key_content": false}
