@@ -24,7 +24,9 @@ Local artifacts, intentionally excluded from Git:
 This selected bundle includes the actual output files, measured metrics, settings, current
 permission preflight, 7/7 assessment and video metadata/digests. It does not include video or
 screenshot pixels. `chapters.json` derives approximate video offsets from recorded action
-timestamps; it is not a frame-accurate annotation. Review and submit the local MP4 separately.
+timestamps; it is not a frame-accurate annotation. Independently observed correction events
+occur at approximately 91.98s, 136.58s, 145.81s and 149.61s in the video. Review and submit
+the local MP4 separately.
 
 To reproduce, follow `docs/DEMO.md`. `scripts/record_demo.py` records a fresh workflow and
 waits for the recorder's duration timer to finalize the movie. `scripts/video_artifact.swift`

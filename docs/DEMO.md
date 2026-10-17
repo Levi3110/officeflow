@@ -67,7 +67,10 @@ uv run pytest -q
 ```
 
 [CI run 39020181384](https://github.com/Levi3110/synthetic-human-agent/actions/runs/39020181384)
-passed both Ubuntu/Python **3.11 and 3.14** jobs: 53 tests, lint and format checks. The recording/export helpers were additionally executed and verified on macOS.
+passed both Ubuntu/Python **3.11 and 3.14** jobs: 53 tests, lint and format checks.
+[CI run 39021741456](https://github.com/Levi3110/synthetic-human-agent/actions/runs/39021741456)
+also passed both jobs after adding the recording helpers and their lint/format checks.
+The recording/export helpers were additionally executed and verified on macOS.
 
 Place the repository URL and your separately recorded video URL in the submission. Evaluators
 need access to the private repository or a visibility change made by its owner. The original native example predates the Screen Recording grant; the new recording workflow

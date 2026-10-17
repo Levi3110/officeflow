@@ -36,5 +36,11 @@
       "approx_start_seconds": 84.77,
       "approx_end_seconds": 160.3
     }
+  ],
+  "independently_observed_correction_seconds": [
+    91.98,
+    136.58,
+    145.81,
+    149.61
   ]
 }
