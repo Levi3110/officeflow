@@ -11,6 +11,9 @@ agent is implausible for every other person, or that either participant performe
 
 **Observed limitation:** agent key holds are shorter and less variable than this participant's (median 55.055 vs 86.960 ms; KS 0.744). The result does not demonstrate a close match.
 
+For the complete 30/30/20/20 assessment, see the [four-criterion benchmark](FOUR_CRITERIA_BENCHMARK.md).
+This report focuses on input distributions and collection context.
+
 ## Design and capture quality
 
 - Agent: `recorded-native-demo-final`; human reference: `human-05`.

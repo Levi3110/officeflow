@@ -240,6 +240,11 @@ def main():
     bench = sub.add_parser("benchmark", help="repeat core simulation in fresh subprocesses")
     bench.add_argument("--output", type=Path, required=True)
     bench.add_argument("--runs", type=int, default=9)
+    rubric = sub.add_parser("evaluate", help="benchmark all four rubric dimensions without invented grades")
+    rubric.add_argument("--agent", type=Path, required=True, help="Agent run directory")
+    rubric.add_argument("--human", type=Path, required=True, help="Closed human run directory")
+    rubric.add_argument("--core", type=Path, required=True, help="Fresh-process core benchmark JSON")
+    rubric.add_argument("--output", type=Path, required=True, help="New aggregate report directory")
     comparison = sub.add_parser("compare", help="compare independently observed agent/human input streams")
     comparison.add_argument("--agent", type=Path, required=True)
     comparison.add_argument("--human", type=Path, required=True)
@@ -263,6 +268,24 @@ def main():
 
             result = benchmark(args.output, args.runs)
             print(json.dumps({key: value for key, value in result.items() if key != "runs"}, indent=2))
+            return
+        if args.command == "evaluate":
+            from .rubric import evaluate, save
+
+            if args.output.exists():
+                raise FileExistsError("Use a fresh evaluation output directory")
+            result = evaluate(args.agent, args.human, args.core)
+            save(result, args.output)
+            print(
+                json.dumps(
+                    {
+                        "output": str(args.output),
+                        "dimensions": result["dimensions"],
+                        "weighted_score": result["weighted_score"],
+                    },
+                    indent=2,
+                )
+            )
             return
         if args.command == "compare":
             from .evaluation import compare

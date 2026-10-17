@@ -7,9 +7,9 @@ Python 3.14.6. Dependency versions are recorded in `uv.lock`.
 
 ```text
 uv sync --locked --extra dev --extra desktop
-pytest -q                         62 passed
+pytest -q                         66 passed
 ruff check src tests scripts      All checks passed
-ruff format --check src tests scripts  43 files already formatted
+ruff format --check src tests scripts  45 files already formatted
 sha run --output runs/final-optimized-demo
 sha inspect runs/final-optimized-demo
 sha run --output runs/final-optimized-demo --resume
@@ -168,3 +168,30 @@ The report/archive utility is tested for exact-byte preservation, source hashes,
 variability warnings, active-capture rejection, overwrite prevention, aggregate-only export,
 and exclusion of initial CPU samples. The full suite passes **62 tests**; lint and format checks
 pass across **43 Python files**. These checks validate software/reporting, not general human likeness.
+
+## Four-criterion benchmark follow-up (executed)
+
+`sha evaluate` now reports all four supplied dimensions and preserves Resource Efficiency as
+Primary and Complexity as Secondary, without changing their 20% weights. A fresh read-only
+artifact assessment again passed 7/7 activity checks. The selected native telemetry has 304
+agent OS samples and 581 human samples, from psutil with zero collector errors. All 1,979
+observed agent input events retain runner attribution; raw source PIDs are not published here.
+
+Observed inter-key entropy at fixed 25 ms bins is 2.948 vs 4.262 bits (agent vs human); entropy
+is descriptive, not a target to maximise. Whole-app CPU/RSS/thread distances include unrelated
+sessions and do not prove human-like process patterns. The selected native Python runner peaked
+at 135.734 MiB RSS and sampled 22.8% CPU; its sampled CPU-time integral is approximately
+9.320 seconds, not a hardware energy counter. Model calls/tokens are zero for the default code policy.
+
+Nine new fresh-process simulation-core trials completed 9/9. Median wall/CPU time is
+66.350/49.173 ms, p95 71.644/50.260 ms; median lifetime process peak RSS is 89.406 MiB.
+These trials exclude native GUI work and behavioural sleeping. Their complete trial records
+are published, including the slower result relative to the historical optimized confirmation.
+No new native workflow was run for this reporting update.
+
+The [full English report](FOUR_CRITERIA_BENCHMARK.md) and
+[aggregate bundle](../examples/four-criteria-benchmark/README.md) retain all limitations and
+null grades. Tests cover CPU integration/initial-sample exclusion, failure denominators,
+fixed-bin observed entropy, weight/priority preservation, overwrite rejection and prevention
+of simulation promotion despite misleading saved metadata. The full local suite passes
+**66 tests**; lint and formatting pass across **45 Python files**.

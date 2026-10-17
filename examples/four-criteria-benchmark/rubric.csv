@@ -1,0 +1,5 @@
+criterion,weight,priority,evidence_status,score_0_100,weighted_points
+Process Telemetry Authenticity,0.3,unspecified,independent_native_observations; similarity_unvalidated,,
+Human Entropy & Timing,0.3,unspecified,single_participant_descriptive,,
+Complexity of Action,0.2,Secondary,native_workflow_verified,,
+Resource Efficiency,0.2,Primary,native_single_run_and_repeated_simulation,,

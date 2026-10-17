@@ -1,7 +1,7 @@
 # Evaluation protocol
 
-The assignment weights are **Telemetry Authenticity 30%, Human Entropy & Timing 30%, Complexity
-of Action 20%, Resource Efficiency 20%**. They are evaluation weights, not scores achieved by
+The assignment weights are **Process Telemetry Authenticity 30%, Human Entropy & Timing 30%,
+Complexity of Action 20% (Secondary), Resource Efficiency 20% (Primary)**. They are evaluation weights, not scores achieved by
 this repository. Simulation validates orchestration and correctness; it cannot validate authenticity.
 
 | Criterion | Evidence implemented | Required evaluation |
@@ -10,6 +10,25 @@ this repository. Simulation validates orchestration and correctness; it cannot v
 | Entropy/timing 30% | Shared persisted persona; variable key holds; word-chunk pauses; corrected adjacent-key typos; curved mouse paths; scroll bursts | Compare measured inter-event distributions, burst/idle patterns and app dwell times against humans |
 | Complexity 20% | Browsing, link activation, scroll, cross-app workflow, cell/formula editing, report, missing-data handoff | Review successful live task completion and action diversity; inspect errors and artifacts |
 | Efficiency 20% | Runner/app CPU and RSS, action timing, model calls/tokens, completion status | Repeat identical scenarios and report medians/p95 plus outcome rates |
+
+## Four-criterion benchmark
+
+Read [FOUR_CRITERIA_BENCHMARK.md](FOUR_CRITERIA_BENCHMARK.md) for the executed four-dimension
+report, measured native resources, process diagnostics and all nine new simulation-core trials.
+The `Primary`/`Secondary` labels specify emphasis and preserve the supplied weights. The earlier
+`sha compare` human-05 report covers input distributions; it is only part of this full rubric.
+
+```bash
+uv run sha benchmark --runs 9 --output runs/benchmarks/core-new.json
+uv run sha evaluate --agent runs/recorded-native-demo-final --human runs/human-05 --core runs/benchmarks/core-new.json --output runs/benchmarks/rubric-new
+```
+
+`evaluate` reads existing evidence and rechecks artifacts without GUI input. `benchmark.json`
+contains per-dimension measurements/statuses, source hashes and null grades. `rubric.csv` lists
+weights/priorities/statuses; it does not convert observed telemetry into an invented score.
+The core-trial batch uses fresh subprocesses and simulation; selected native telemetry remains
+a single earlier GUI run with capture/background confounds. Process CPU/RSS/thread distances
+compare whole matching app scopes, not isolated task processes or a human population.
 
 ## Current exploratory evidence
 

@@ -52,6 +52,14 @@ It requires the macOS command-line developer tools. No microphone/audio capture 
 Raw movies, screenshots and frames stay in ignored `runs/`/`dist/` folders; they are not pushed
 with source code. Select and submit the reviewed video separately.
 
+## Four-criterion evidence report
+
+The [four-criterion benchmark](FOUR_CRITERIA_BENCHMARK.md) documents Process Telemetry Authenticity
+30%, Human Entropy & Timing 30%, Complexity 20% (Secondary) and Resource Efficiency 20% (Primary).
+Use `sha evaluate` with closed native/manual recordings and a fresh `sha benchmark` core batch.
+Submit the report with the demonstration; do not present its functional checklist or simulation
+core timings as a calibrated competition score. Raw human input/OS traces stay local.
+
 ## GitHub handoff
 
 Source, lockfile, tests, config, documentation and labelled simulation/native evidence are

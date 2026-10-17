@@ -11,14 +11,17 @@ Source: [Levi3110/synthetic-human-agent](https://github.com/Levi3110/synthetic-h
 LibreOffice Calc/Writer 26.8.1** interfaces: 22 verified actions, 5 handoffs, 20 cells and a
 source-consistent report. All **7 requested activity checks** passed, including independently
 observed input, four corrected typing errors and four AX-verified viewport movements.
-**62 tests pass.** See [native evidence](examples/native/README.md).
+**66 tests pass.** See [native evidence](examples/native/README.md).
 
 This is a bounded local-catalog scenario, not a general natural-language office assistant.
 The retained human comparison is available in [the human-05 benchmark](docs/HUMAN_05_BENCHMARK.md).
 It reveals substantial timing differences and represents **one person's session, not a universal
 human baseline**. People differ in typing, editing, shortcuts, navigation and problem-solving;
 matching one person cannot establish general human likeness. The checklist is not a competition
-grade, and no maximum authenticity score has been demonstrated.
+grade, and no maximum authenticity score has been demonstrated. The [four-criterion benchmark](docs/FOUR_CRITERIA_BENCHMARK.md)
+now covers Process Telemetry Authenticity (30%), Human Entropy & Timing (30%), Complexity
+(20%, Secondary) and Resource Efficiency (20%, Primary), with native measurements and nine
+new simulation-core trials clearly distinguished.
 
 Screen Recording is now enabled and actual screenshots have been checked. A real **3-minute
 10-second, 1080p** GUI video is available locally as `dist/synthetic-human-agent-demo.mp4`.
@@ -201,6 +204,7 @@ while the recorder listens to manual work.
 
 ```bash
 uv run sha benchmark --runs 9 --output runs/bench/current.json
+uv run sha evaluate --agent runs/recorded-native-demo-final --human runs/human-05 --core runs/bench/current.json --output runs/benchmarks/four-criteria
 uv run --extra desktop sha capture-human --seconds 600 --output runs/human-baseline
 uv run sha compare --agent runs/desktop-demo/inputs.jsonl --human runs/human-baseline/inputs.jsonl --output runs/comparison.json
 uv run python scripts/benchmark_report.py --agent runs/desktop-demo --human runs/human-baseline --output runs/benchmarks/closed-pair --archive-raw
@@ -210,7 +214,10 @@ The fresh-process simulation benchmark measures core CPU/wall time/RSS without r
 behavioural sleep or the OS sampler. [Optimization results](docs/OPTIMIZATION.md) do not describe
 GUI throughput. The [human-05 report](docs/HUMAN_05_BENCHMARK.md) separately compares recorded
 native input with one manual session, preserves unfavourable differences and leaves the weighted
-score unassigned. Raw human traces remain local; aggregate results and provenance hashes are published.
+score unassigned. `sha evaluate` adds process-pattern diagnostics, fresh artifact checks and
+resource measurements across all four dimensions. It writes `benchmark.json`, an English report
+and a weights/status CSV; it reuses existing native evidence and sends no desktop input.
+Raw human traces remain local; aggregate results and provenance hashes are published.
 
 `capture-human` emits no input and holds the desktop lock to prevent concurrent agent execution.
 Stop immediately after the task, before running compare. Comparison requires correct labels,
